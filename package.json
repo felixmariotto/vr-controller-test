@@ -1,0 +1,26 @@
+{
+  "name": "test-vr",
+  "version": "0.0.0",
+  "description": "test three.js vr",
+  "main": "app.js",
+  "engines": {
+    "node": "10.x"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felixmariotto/test-vr.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felixmariotto/test-vr/issues"
+  },
+  "homepage": "https://github.com/felixmariotto/test-vr#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
