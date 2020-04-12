@@ -46,6 +46,14 @@ function main() {
 
 	//
 
+	var light = new THREE.DirectionalLight( 0xffffff );
+	light.position.set( 0, 0, 1 );
+	scene.add( light );
+	light.target.position.set( 0, 0, - 2 );
+	scene.add( light.target );
+
+	//
+
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
 	renderer.autoClear = false;
 	renderer.setPixelRatio( window.devicePixelRatio );
@@ -78,11 +86,11 @@ function main() {
 	controllerLeft.add( Hand() );
 
 	controllerRight.addEventListener('selectstart', ()=>{
-		handMaterial.color = "blue" ;
+		handMaterial.color = 0x000000 ;
 	});
 
 	controllerRight.addEventListener('squeezestart', ()=>{
-		handMaterial.color = "red" ;
+		handMaterial.color = 0xff00ff ;
 	});
 
 	//
