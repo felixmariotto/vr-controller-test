@@ -52,6 +52,9 @@ function main() {
 	light.target.position.set( 0, 0, - 2 );
 	scene.add( light.target );
 
+	var hemLight = new THREE.AmbientLight( 0x404040, 0.7 ); // soft white light
+	scene.add( hemLight );
+
 	//
 
 	renderer = new THREE.WebGLRenderer( { antialias: true } );
@@ -108,12 +111,18 @@ function main() {
 	gltfLoader = new THREE.GLTFLoader();
 
 	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
-
-		console.log( glb );
-
-		controllerRight.add( glb.scene );
-
+		addRacketToController( glb, controllerLeft );
 	});
+
+	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
+		addRacketToController( glb, controllerRight );
+	});
+
+	function addRacketToController( glb, controller ) {
+		glb.scene.scale.setScalar( 0.35 );
+		glb.scene.rotation.x += Math.PI / 2;
+		controller.add( glb.scene );
+	};
 
 	//
 
