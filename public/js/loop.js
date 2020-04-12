@@ -1,8 +1,13 @@
 
 function loop() {
 
-	var time = performance.now() * 0.00002;
-	// orbitGroup.rotation.y = time;
+	var delta = clock.getDelta();
+
+	balls.forEach((ballMesh)=> {
+
+		ballMesh.position.add( ballMesh.userData.velocity );
+
+	});
 
 	renderer.render( scene, camera );
 

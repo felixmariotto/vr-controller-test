@@ -1,16 +1,21 @@
 
 window.addEventListener('load', function() {
 	main();
-})
+});
 
-var scene, renderer, camera, stats, gltfLoader;
+var scene, renderer, camera, stats, gltfLoader, clock;
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
 var controllerRight, controllerLeft ;
 var sphereSpace;
+var balls = [];
 
 function main() {
+
+	clock = new THREE.Clock();
+
+	//
 
 	scene = new THREE.Scene();
 	scene.background = new THREE.Color( 0xffffff );
@@ -127,8 +132,14 @@ function addBall() {
 			new THREE.SphereBufferGeometry(0.02, 8, 8),
 			new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
 		);
+	ballMesh.userData.velocity = new THREE.Vector3(
+			Math.random(),
+			Math.random(),
+			Math.random()
+		);
 
 	sphereSpace.add( ballMesh );
+	balls.push( ballMesh );
 
 };
 
