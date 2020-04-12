@@ -83,14 +83,14 @@ function AssetManager() {
 		var ball = {
 
 			mesh: new THREE.Mesh(
-				new THREE.SphereBufferGeometry(BALL_RADIUS, 8, 8),
+				new THREE.SphereBufferGeometry(BALL_RADIUS * 10, 8, 8),
 				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
 			),
 
 			body: new CANNON.Body({
 				mass: 5, // kg
-				position: new CANNON.Vec3( 0, 1, 0 ), // m
-				shape: new CANNON.Sphere( BALL_RADIUS ),
+				position: new CANNON.Vec3( 0, 0, 0 ), // m
+				shape: new CANNON.Sphere( BALL_RADIUS * 10 ),
 				velocity: new CANNON.Vec3(
 					Math.random(),
 					Math.random(),
