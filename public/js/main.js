@@ -77,8 +77,12 @@ function main() {
 	controllerRight.add( Hand() );
 	controllerLeft.add( Hand() );
 
-	controllerRight.addEventListener('selectStart', ()=>{
-		handMaterial.color = 0xff00ff ;
+	controllerRight.addEventListener('selectstart', ()=>{
+		handMaterial.color = "blue" ;
+	});
+
+	controllerRight.addEventListener('squeezestart', ()=>{
+		handMaterial.color = "red" ;
 	});
 
 	//
