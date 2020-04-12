@@ -5,6 +5,7 @@ function AssetManager() {
 	const SLOW_BALL_SPEED = 0.2;
 
 	const GAME_SPHERE_RADIUS = 0.5;
+	const BALL_RADIUS = 0.02;
 
 	var controllerRight, controllerLeft ;
 	var sphereSpace;
@@ -79,19 +80,32 @@ function AssetManager() {
 
 	function addBall() {
 
-		var ballMesh = new THREE.Mesh(
-				new THREE.SphereBufferGeometry(0.02, 8, 8),
-				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
-			);
+		var ball = {
 
-		ballMesh.userData.velocity = new THREE.Vector3(
+			mesh: new THREE.Mesh(
+				new THREE.SphereBufferGeometry(BALL_RADIUS, 8, 8),
+				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
+			),
+
+			velocity: new THREE.Vector3(
 				Math.random(),
 				Math.random(),
 				Math.random()
-			);
+			),
 
-		sphereSpace.add( ballMesh );
-		balls.push( ballMesh );
+			body: new CANNON.Body({
+				mass: 5, // kg
+				position: new CANNON.Vec3( 0, 1, 0 ), // m
+				shape: new CANNON.Sphere( BALL_RADIUS )
+			})
+
+		};
+
+
+		sphereSpace.add( ball.mesh );
+		cannonWorld.addBody( ball.body );
+
+		balls.push( ball );
 
 	};
 

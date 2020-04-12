@@ -2,6 +2,8 @@
 var assetManager ;
 
 var scene, renderer, camera, stats, gltfLoader, clock;
+var cannonWorld;
+
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
@@ -55,6 +57,11 @@ function main() {
 	document.body.appendChild( renderer.domElement );
 
 	document.body.appendChild( VRButton.createButton( renderer ) );
+
+	// CANNON JS
+
+	cannonWorld = new CANNON.World();
+	cannonWorld.gravity.set(0, -9.82, 0 ); // m/s²
 
 	//
 
