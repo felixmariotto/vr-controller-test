@@ -63,17 +63,23 @@ function main() {
 
 	scene.add( controllerRight, controllerLeft );
 
+	var handMaterial = new THREE.MeshLambertMaterial()
+
 	function Hand() {
 		return (
 			new THREE.Mesh(
 				new THREE.SphereBufferGeometry( 0.1, 8, 8 ),
-				new THREE.MeshNormalMaterial()
+				handMaterial
 			)
 		);
 	};
 
 	controllerRight.add( Hand() );
 	controllerLeft.add( Hand() );
+
+	controllerRight.addEventListener('selectStart', ()=>{
+		handMaterial.color = 0xff00ff ;
+	});
 
 	//
 
