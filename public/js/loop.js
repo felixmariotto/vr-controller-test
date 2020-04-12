@@ -3,7 +3,7 @@ function loop() {
 
 	var delta = clock.getDelta() * gameSpeed ;
 
-	animate( delta );
+	animate.update( delta );
 
 	renderer.render( scene, camera );
 

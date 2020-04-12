@@ -2,7 +2,7 @@
 var assetManager ;
 
 var scene, renderer, camera, stats, gltfLoader, clock;
-var cannonWorld;
+var cannonWorld, animate;
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -61,7 +61,7 @@ function main() {
 	// CANNON JS
 
 	cannonWorld = new CANNON.World();
-	cannonWorld.gravity.set(0, -9.82, 0 ); // m/s²
+	// cannonWorld.gravity.set(0, -9.82, 0 ); // m/s²
 
 	//
 
@@ -70,6 +70,7 @@ function main() {
 	//
 
 	assetManager = AssetManager();
+	animate = Animate();
 
 	//
 

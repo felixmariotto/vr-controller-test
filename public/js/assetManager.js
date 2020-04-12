@@ -87,16 +87,15 @@ function AssetManager() {
 				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
 			),
 
-			velocity: new THREE.Vector3(
-				Math.random(),
-				Math.random(),
-				Math.random()
-			),
-
 			body: new CANNON.Body({
 				mass: 5, // kg
 				position: new CANNON.Vec3( 0, 1, 0 ), // m
-				shape: new CANNON.Sphere( BALL_RADIUS )
+				shape: new CANNON.Sphere( BALL_RADIUS ),
+				velocity: new CANNON.Vec3(
+					Math.random(),
+					Math.random(),
+					Math.random()
+				)
 			})
 
 		};

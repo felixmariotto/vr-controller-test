@@ -1,29 +1,34 @@
 
 
-var fixedTimeStep = 1.0 / 60.0; // seconds
-var maxSubSteps = 3;
 
-function animate( delta ) {
 
-	cannonWorld.step(fixedTimeStep, delta, maxSubSteps);
+function Animate() {
 
-	assetManager.balls.forEach( ( ball )=> {
+	const TIME_STEP = 1 / 120 ;
+	const MAX_SUBSTEP = 3 ;
 
-		ball.mesh.position.copy( ball.body.position );
+	function update( delta ) {
 
-		/*
+		cannonWorld.step(TIME_STEP, delta, MAX_SUBSTEP);
 
-		ballMesh.position.addScaledVector(
-			ballMesh.userData.velocity,
-			assetManager.params.ballSpeed * ( delta * gameSpeed )
-		);
+		assetManager.balls.forEach( ( ball )=> {
 
-		if ( ballMesh.position.length() > assetManager.GAME_SPHERE_RADIUS ) {
-			gameSpeed = 0 ;
-		};
+			ball.mesh.position.copy( ball.body.position );
 
-		*/
+			/*
 
-	});
+			if ( ballMesh.position.length() > assetManager.GAME_SPHERE_RADIUS ) {
+				gameSpeed = 0 ;
+			};
+
+			*/
+
+		});
+
+	};
+
+	return {
+		update
+	};
 
 };
