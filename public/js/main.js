@@ -11,12 +11,8 @@ var controllerRight, controllerLeft ;
 
 function main() {
 
-	var background = new THREE.CubeTextureLoader()
-		.setPath( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/assets/milkyway-cube/' )
-		.load( [ 'dark-s_px.jpg', 'dark-s_nx.jpg', 'dark-s_py.jpg', 'dark-s_ny.jpg', 'dark-s_pz.jpg', 'dark-s_nz.jpg' ] );
-
 	scene = new THREE.Scene();
-	scene.background = background;
+	scene.background = new THREE.Color( 0xffffff );
 
 	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000000000 );
 	camera.position.set( 0, 1.6, 3 );
@@ -30,20 +26,6 @@ function main() {
 				);
 				scene.add( room );
 
-	// lensflare
-	var loader = new THREE.TextureLoader();
-	var texture0 = loader.load( "https://test-threejs-vr.s3.us-east-2.amazonaws.com/assets/lensflare0.png" );
-	var texture3 = loader.load( "https://test-threejs-vr.s3.us-east-2.amazonaws.com/assets/lensflare3.png" );
-
-	var lensflare = new THREE.Lensflare();
-	lensflare.position.set( 0, 0, 10000 );
-	lensflare.addElement( new THREE.LensflareElement( texture0, 500, 0 ) );
-	lensflare.addElement( new THREE.LensflareElement( texture3, 60, 0.6 ) );
-	lensflare.addElement( new THREE.LensflareElement( texture3, 70, 0.7 ) );
-	lensflare.addElement( new THREE.LensflareElement( texture3, 120, 0.9 ) );
-	lensflare.addElement( new THREE.LensflareElement( texture3, 70, 1 ) );
-	scene.add( lensflare );
-
 	//
 
 	var light = new THREE.DirectionalLight( 0xffffff );
@@ -52,7 +34,7 @@ function main() {
 	light.target.position.set( 0, 0, - 2 );
 	scene.add( light.target );
 
-	var hemLight = new THREE.AmbientLight( 0x404040, 0.7 ); // soft white light
+	var hemLight = new THREE.AmbientLight( 0xffffff, 0.8 ); // soft white light
 	scene.add( hemLight );
 
 	//
@@ -84,9 +66,6 @@ function main() {
 			)
 		);
 	};
-
-	// controllerRight.add( Hand() );
-	// controllerLeft.add( Hand() );
 
 	controllerRight.addEventListener('selectstart', ()=>{
 		handMaterial.color = new THREE.Color( 0x000000 );
@@ -120,7 +99,7 @@ function main() {
 
 	function addRacketToController( glb, controller ) {
 		glb.scene.scale.setScalar( 0.35 );
-		glb.scene.rotation.x += Math.PI / 2;
+		glb.scene.rotation.x -= Math.PI / 2;
 		controller.add( glb.scene );
 	};
 
