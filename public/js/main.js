@@ -86,11 +86,11 @@ function main() {
 	controllerLeft.add( Hand() );
 
 	controllerRight.addEventListener('selectstart', ()=>{
-		handMaterial.color = 0x000000 ;
+		handMaterial.color = new THREE.Color( 0x000000 );
 	});
 
 	controllerRight.addEventListener('squeezestart', ()=>{
-		handMaterial.color = 0xff00ff ;
+		handMaterial.color = new THREE.Color( 0x00ff00 );
 	});
 
 	//
