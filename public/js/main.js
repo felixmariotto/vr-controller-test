@@ -7,10 +7,13 @@ var scene, renderer, camera, stats, gltfLoader, clock;
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
+const FAST_BALL_SPEED = 0.005;
+const SLOW_BALL_SPEED = 0.002;
+
 var controllerRight, controllerLeft ;
 var sphereSpace;
 var balls = [];
-var ballSpeed = 0.05;
+var ballSpeed = FAST_BALL_SPEED;
 
 function main() {
 
@@ -84,7 +87,11 @@ function main() {
 	});
 
 	controllerRight.addEventListener('squeezestart', ()=>{
-		addBall();
+		ballSpeed = SLOW_BALL_SPEED;
+	});
+
+	controllerRight.addEventListener('squeezeend', ()=>{
+		ballSpeed = FAST_BALL_SPEED;
 	});
 
 	/*
