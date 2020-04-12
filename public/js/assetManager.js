@@ -3,13 +3,16 @@ function AssetManager() {
 
 	const FAST_BALL_SPEED = 0.5;
 	const SLOW_BALL_SPEED = 0.2;
-	var ballSpeed = FAST_BALL_SPEED;
 
 	const GAME_SPHERE_RADIUS = 0.5;
 
 	var controllerRight, controllerLeft ;
 	var sphereSpace;
 	var balls = [];
+
+	var params = {
+		ballSpeed: FAST_BALL_SPEED
+	};
 
 	// GRID ROOM
 
@@ -58,16 +61,18 @@ function AssetManager() {
 	// CONTROLLERS EVENTS
 	// events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
 
+	addBall();
+
 	controllerRight.addEventListener('selectstart', ()=>{
 		addBall();
 	});
 
 	controllerRight.addEventListener('squeezestart', ()=>{
-		ballSpeed = SLOW_BALL_SPEED;
+		params.ballSpeed = SLOW_BALL_SPEED;
 	});
 
 	controllerRight.addEventListener('squeezeend', ()=>{
-		ballSpeed = FAST_BALL_SPEED;
+		params.ballSpeed = FAST_BALL_SPEED;
 	});
 
 	// FUNCTIONS
@@ -91,7 +96,9 @@ function AssetManager() {
 	};
 
 	return {
-		balls
+		GAME_SPHERE_RADIUS,
+		balls,
+		params
 	};
 
 };

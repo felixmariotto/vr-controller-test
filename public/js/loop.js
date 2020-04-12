@@ -7,10 +7,10 @@ function loop() {
 
 		ballMesh.position.addScaledVector(
 			ballMesh.userData.velocity,
-			ballSpeed * ( delta * gameSpeed )
+			assetManager.params.ballSpeed * ( delta * gameSpeed )
 		);
 
-		if ( ballMesh.position.length() > GAME_SPHERE_RADIUS ) {
+		if ( ballMesh.position.length() > assetManager.GAME_SPHERE_RADIUS ) {
 			gameSpeed = 0 ;
 		};
 
