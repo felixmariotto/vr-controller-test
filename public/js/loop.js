@@ -1,7 +1,7 @@
 
 function loop() {
 
-	var delta = clock.getDelta();
+	var delta = clock.getDelta() * gameSpeed ;
 
 	balls.forEach((ballMesh)=> {
 
@@ -9,6 +9,10 @@ function loop() {
 			ballMesh.userData.velocity,
 			ballSpeed
 		);
+
+		if ( ballMesh.position.length() > GAME_SPHERE_RADIUS ) {
+			gameSpeed = 0 ;
+		};
 
 	});
 

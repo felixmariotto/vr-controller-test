@@ -9,11 +9,13 @@ const HEIGHT = window.innerHeight;
 
 const FAST_BALL_SPEED = 0.005;
 const SLOW_BALL_SPEED = 0.002;
+const GAME_SPHERE_RADIUS = 0.5;
 
 var controllerRight, controllerLeft ;
 var sphereSpace;
 var balls = [];
 var ballSpeed = FAST_BALL_SPEED;
+var gameSpeed = 1 ;
 
 function main() {
 
@@ -44,7 +46,7 @@ function main() {
 	scene.add( sphereSpace );
 
 	sphere = new THREE.Mesh(
-			new THREE.SphereBufferGeometry(0.5, 16, 16),
+			new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 16, 16),
 			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
 		);
 	
