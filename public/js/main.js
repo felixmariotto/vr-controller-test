@@ -7,8 +7,8 @@ var scene, renderer, camera, stats, gltfLoader, clock;
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
-const FAST_BALL_SPEED = 0.005;
-const SLOW_BALL_SPEED = 0.002;
+const FAST_BALL_SPEED = 0.5;
+const SLOW_BALL_SPEED = 0.2;
 const GAME_SPHERE_RADIUS = 0.5;
 
 var controllerRight, controllerLeft ;
@@ -129,6 +129,8 @@ function main() {
 	window.addEventListener( 'resize', onWindowResize, false );
 
 	//
+
+	addBall();
 
 	renderer.setAnimationLoop( loop );
 
