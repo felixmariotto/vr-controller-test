@@ -5,7 +5,10 @@ function loop() {
 
 	balls.forEach((ballMesh)=> {
 
-		ballMesh.position.add( ballMesh.userData.velocity );
+		ballMesh.position.addScaledVector(
+			ballMesh.userData.velocity,
+			ballSpeed
+		);
 
 	});
 

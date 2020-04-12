@@ -10,6 +10,7 @@ const HEIGHT = window.innerHeight;
 var controllerRight, controllerLeft ;
 var sphereSpace;
 var balls = [];
+var ballSpeed = 0.05;
 
 function main() {
 
