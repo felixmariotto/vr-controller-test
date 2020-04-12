@@ -8,6 +8,7 @@ const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
 var controllerRight, controllerLeft ;
+var sphereSpace;
 
 function main() {
 
@@ -28,13 +29,17 @@ function main() {
 
 	// game sphere
 
+	sphereSpace = new THREE.Group();
+	sphereSpace.position.z -= 0.5;
+	sphereSpace.position.y += 1;
+	scene.add( sphereSpace );
+
 	sphere = new THREE.Mesh(
 			new THREE.SphereBufferGeometry(0.5, 16, 16),
 			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
 		);
-	sphere.position.z -= 0.5;
-	sphere.position.y += 1;
-	scene.add( sphere );
+	
+	sphereSpace.add( sphere );
 
 	//
 
@@ -120,10 +125,10 @@ function addBall() {
 
 	var ballMesh = new THREE.Mesh(
 			new THREE.SphereBufferGeometry(0.02, 8, 8),
-			new THREE.MeshLambertMaterial()
+			new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
 		);
 
-	scene.add( ballMesh );
+	sphereSpace.add( ballMesh );
 
 };
 
