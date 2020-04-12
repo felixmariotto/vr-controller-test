@@ -54,7 +54,7 @@ function main() {
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	// renderer.shadowMap.enabled = true;
-	renderer.gammaOutput = true;
+	renderer.outputEncoding = THREE.GammaEncoding;
 	renderer.gammaFactor = 2.2;
 	renderer.xr.enabled = true;
 	document.body.appendChild( renderer.domElement );
@@ -68,23 +68,12 @@ function main() {
 
 	scene.add( controllerRight, controllerLeft );
 
-	var handMaterial = new THREE.MeshLambertMaterial()
-
-	function Hand() {
-		return (
-			new THREE.Mesh(
-				new THREE.SphereBufferGeometry( 0.1, 8, 8 ),
-				handMaterial
-			)
-		);
-	};
-
 	controllerRight.addEventListener('selectstart', ()=>{
-		handMaterial.color = new THREE.Color( 0x000000 );
+		addBall();
 	});
 
 	controllerRight.addEventListener('squeezestart', ()=>{
-		handMaterial.color = new THREE.Color( 0x00ff00 );
+		addBall();
 	});
 
 	/*
@@ -122,6 +111,19 @@ function main() {
 	//
 
 	renderer.setAnimationLoop( loop );
+
+};
+
+
+
+function addBall() {
+
+	var ballMesh = new THREE.Mesh(
+			new THREE.SphereBufferGeometry(0.02, 8, 8),
+			new THREE.MeshLambertMaterial()
+		);
+
+	scene.add( ballMesh );
 
 };
 
