@@ -126,7 +126,7 @@ function main() {
 
 	controllerRight.addEventListener('squeezeend', ()=>{
 		ballSpeed = FAST_BALL_SPEED;
-	});
+	}); 
 
 	/*
 	session.addEventListener( 'select', onSessionEvent );
