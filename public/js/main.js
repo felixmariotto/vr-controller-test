@@ -21,10 +21,20 @@ function main() {
 	// room
 
 	room = new THREE.LineSegments(
-					new THREE.BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
-					new THREE.LineBasicMaterial( { color: 0x808080 } )
-				);
-				scene.add( room );
+			new THREE.BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
+			new THREE.LineBasicMaterial( { color: 0x808080 } )
+		);
+	scene.add( room );
+
+	// game sphere
+
+	sphere = new THREE.Mesh(
+			new THREE.SphereBufferGeometry(0.5, 16, 16),
+			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
+		);
+	sphere.position.z -= 0.5;
+	sphere.position.y += 1;
+	scene.add( sphere );
 
 	//
 
