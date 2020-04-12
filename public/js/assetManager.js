@@ -1,36 +1,6 @@
 
 function AssetManager() {
 
-	const GAME_SPHERE_RADIUS = 0.5;
-	const BALL_RADIUS = 0.02;
-
-	// Create a sphere
-
-	world = new CANNON.World();
-	world.gravity.set(0, 0, -9.82); // m/s²
-
-	sphereBody = new CANNON.Body({
-	   mass: 5, // kg
-	   position: new CANNON.Vec3(0, 0, 1), // m
-	   shape: new CANNON.Sphere( BALL_RADIUS )
-	});
-	world.addBody(sphereBody);
-
-	// Create a plane
-	var groundBody = new CANNON.Body({
-	    mass: 0 // mass == 0 makes the body static
-	});
-	var groundShape = new CANNON.Plane();
-	groundBody.addShape(groundShape);
-	world.addBody(groundBody);
-
-	visibleSphere = new THREE.Mesh(
-			new THREE.SphereBufferGeometry(BALL_RADIUS, 8, 8),
-			new THREE.MeshNormalMaterial()
-		);
-
-	scene.add( visibleSphere );
-
 	// room
 
 	room = new THREE.LineSegments(
@@ -54,5 +24,70 @@ function AssetManager() {
 	
 	sphereSpace.add( sphere );
 
+	/////////////////////
+	///    CONTROLLERS
+	/////////////////////
 
-}
+	//
+
+	controllerRight = renderer.xr.getController(0);
+	controllerLeft = renderer.xr.getController(1);
+
+	scene.add( controllerRight, controllerLeft );
+
+	controllerRight.addEventListener('selectstart', ()=>{
+		addBall();
+	});
+
+	controllerRight.addEventListener('squeezestart', ()=>{
+		ballSpeed = SLOW_BALL_SPEED;
+	});
+
+	controllerRight.addEventListener('squeezeend', ()=>{
+		ballSpeed = FAST_BALL_SPEED;
+	}); 
+
+	/*
+	session.addEventListener( 'select', onSessionEvent );
+	session.addEventListener( 'selectstart', onSessionEvent );
+	session.addEventListener( 'selectend', onSessionEvent );
+	session.addEventListener( 'squeeze', onSessionEvent );
+	session.addEventListener( 'squeezestart', onSessionEvent );
+	session.addEventListener( 'squeezeend', onSessionEvent );
+	session.addEventListener( 'end', onSessionEnd );
+	*/
+
+	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
+		addRacketToController( glb, controllerLeft );
+	});
+
+	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
+		addRacketToController( glb, controllerRight );
+	});
+
+	function addRacketToController( glb, controller ) {
+		glb.scene.scale.setScalar( 0.35 );
+		glb.scene.rotation.x -= Math.PI / 3.5;
+		controller.add( glb.scene );
+	};
+
+	//
+
+	function addBall() {
+
+		var ballMesh = new THREE.Mesh(
+				new THREE.SphereBufferGeometry(0.02, 8, 8),
+				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
+			);
+		ballMesh.userData.velocity = new THREE.Vector3(
+				Math.random(),
+				Math.random(),
+				Math.random()
+			);
+
+		sphereSpace.add( ballMesh );
+		balls.push( ballMesh );
+
+	};
+
+};
