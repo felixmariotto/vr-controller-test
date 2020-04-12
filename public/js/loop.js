@@ -3,7 +3,7 @@ function loop() {
 
 	var delta = clock.getDelta() * gameSpeed ;
 
-	balls.forEach((ballMesh)=> {
+	assetManager.balls.forEach((ballMesh)=> {
 
 		ballMesh.position.addScaledVector(
 			ballMesh.userData.velocity,
