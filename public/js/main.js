@@ -3,7 +3,7 @@ window.addEventListener('load', function() {
 	main();
 })
 
-var scene, renderer, camera, stats;
+var scene, renderer, camera, stats, gltfLoader;
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
 
@@ -82,8 +82,8 @@ function main() {
 		);
 	};
 
-	controllerRight.add( Hand() );
-	controllerLeft.add( Hand() );
+	// controllerRight.add( Hand() );
+	// controllerLeft.add( Hand() );
 
 	controllerRight.addEventListener('selectstart', ()=>{
 		handMaterial.color = new THREE.Color( 0x000000 );
@@ -91,6 +91,28 @@ function main() {
 
 	controllerRight.addEventListener('squeezestart', ()=>{
 		handMaterial.color = new THREE.Color( 0x00ff00 );
+	});
+
+	/*
+	session.addEventListener( 'select', onSessionEvent );
+	session.addEventListener( 'selectstart', onSessionEvent );
+	session.addEventListener( 'selectend', onSessionEvent );
+	session.addEventListener( 'squeeze', onSessionEvent );
+	session.addEventListener( 'squeezestart', onSessionEvent );
+	session.addEventListener( 'squeezeend', onSessionEvent );
+	session.addEventListener( 'end', onSessionEnd );
+	*/
+
+	//
+
+	gltfLoader = new THREE.GLTFLoader();
+
+	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
+
+		console.log( glb );
+
+		controllerRight.add( glb.scene );
+
 	});
 
 	//
