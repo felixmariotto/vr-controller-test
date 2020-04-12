@@ -43,7 +43,9 @@ function main() {
 	renderer.autoClear = false;
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.shadowMap.enabled = true;
+	// renderer.shadowMap.enabled = true;
+	renderer.gammaOutput = true;
+	renderer.gammaFactor = 2.2;
 	renderer.xr.enabled = true;
 	document.body.appendChild( renderer.domElement );
 
@@ -99,7 +101,7 @@ function main() {
 
 	function addRacketToController( glb, controller ) {
 		glb.scene.scale.setScalar( 0.35 );
-		glb.scene.rotation.x -= Math.PI / 2;
+		glb.scene.rotation.x -= Math.PI / 3.5;
 		controller.add( glb.scene );
 	};
 
