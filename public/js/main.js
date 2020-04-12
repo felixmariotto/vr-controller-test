@@ -24,7 +24,7 @@ function main() {
 	//
 
 	scene = new THREE.Scene();
-	scene.background = new THREE.Color( 0xffffff );
+	scene.background = new THREE.Color( 0x555555 );
 
 	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000000000 );
 	camera.position.set( 0, 1.6, 3 );
@@ -45,12 +45,44 @@ function main() {
 	sphereSpace.position.y += 1;
 	scene.add( sphereSpace );
 
+	
 	sphere = new THREE.Mesh(
 			new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 16, 16),
 			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
 		);
 	
 	sphereSpace.add( sphere );
+	
+
+	//
+
+
+	/*
+	var uniforms = { 'widthFactor': { value: 2 } };
+
+	var material = new THREE.ShaderMaterial({
+
+		uniforms: uniforms,
+		vertexShader: document.getElementById( 'vertexShader' ).textContent,
+		fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+		side: THREE.DoubleSide
+
+	});
+
+	material.extensions.derivatives = true;
+
+	var geometry = new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 16, 16);
+
+	geometry.deleteAttribute( 'normal' );
+	geometry.deleteAttribute( 'uv' );
+
+	setupAttributes( geometry );
+
+	var sphere = new THREE.Mesh( geometry, material );
+	sphere.position.set( 40, 0, 0 );
+
+	sphereSpace.add( sphere );
+	*/
 
 	//
 
@@ -130,7 +162,7 @@ function main() {
 
 	//
 
-	addBall();
+	// addBall();
 
 	renderer.setAnimationLoop( loop );
 
@@ -152,6 +184,29 @@ function addBall() {
 
 	sphereSpace.add( ballMesh );
 	balls.push( ballMesh );
+
+};
+
+
+
+function setupAttributes( geometry ) {
+
+	var vectors = [
+		new THREE.Vector3( 1, 0, 0 ),
+		new THREE.Vector3( 0, 1, 0 ),
+		new THREE.Vector3( 0, 0, 1 )
+	];
+
+	var position = geometry.attributes.position;
+	var centers = new Float32Array( position.count * 3 );
+
+	for ( var i = 0, l = position.count; i < l; i ++ ) {
+
+		vectors[ i % 3 ].toArray( centers, i * 3 );
+
+	}
+
+	geometry.setAttribute( 'center', new THREE.BufferAttribute( centers, 3 ) );
 
 };
 
