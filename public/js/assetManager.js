@@ -35,9 +35,11 @@ function AssetManager() {
 
 	// GAME SPHERE
 
+	// materials
+
 	var uniforms = { 'widthFactor': { value: 1 } };
 
-	var customMaterial = new THREE.ShaderMaterial({
+	var gameSphereMaterial = new THREE.ShaderMaterial({
 
 		uniforms: uniforms,
 		vertexShader: shaders.vertexShader,
@@ -46,7 +48,22 @@ function AssetManager() {
 
 	});
 
-	customMaterial.extensions.derivatives = true;
+	gameSphereMaterial.extensions.derivatives = true;
+
+	//
+
+	var gameSphereFailureMaterial = new THREE.ShaderMaterial({
+
+		uniforms: uniforms,
+		vertexShader: shaders.vertexShader,
+		fragmentShader: shaders.fragmentShaderRed,
+		side: THREE.DoubleSide
+
+	});
+
+	gameSphereFailureMaterial.extensions.derivatives = true;
+
+	// geometry
 
 	var sphereGeometry = new THREE.IcosahedronBufferGeometry( GAME_SPHERE_RADIUS, 1 );
 	sphereGeometry.deleteAttribute( 'normal' );
@@ -54,10 +71,10 @@ function AssetManager() {
 
 	setupAttributes( sphereGeometry );
 
-	mesh2 = new THREE.Mesh( sphereGeometry, customMaterial );
-	mesh2.position.copy( GAME_SPHERE_CENTER );
+	gameSphereMesh = new THREE.Mesh( sphereGeometry, gameSphereMaterial );
+	gameSphereMesh.position.copy( GAME_SPHERE_CENTER );
 
-	scene.add( mesh2 );
+	scene.add( gameSphereMesh );
 
 	function setupAttributes( geometry ) {
 
@@ -194,7 +211,7 @@ function AssetManager() {
 
 	// FUNCTIONS
 
-	/*
+	
 	setInterval(()=> {
 		addBall()
 		addBall()
@@ -202,7 +219,7 @@ function AssetManager() {
 		addBall()
 		addBall()
 	}, 500);
-	*/
+	
 
 	function addBall() {
 
@@ -302,6 +319,14 @@ function AssetManager() {
 
 	};
 
+	function setSphereFailureMaterial() {
+		gameSphereMesh.material = gameSphereFailureMaterial ;
+	};
+
+	function setSphereBasicMaterial() {
+		gameSphereMesh.material = gameSphereMaterial ;
+	};
+
 	//
 
 	return {
@@ -314,7 +339,9 @@ function AssetManager() {
 		params,
 		controllerRight,
 		controllerLeft,
-		markFailureBall
+		markFailureBall,
+		setSphereFailureMaterial,
+		setSphereBasicMaterial
 	};
 
 };

@@ -8,6 +8,7 @@ function GameControl() {
 	function start() {
 
 		assetManager.emptyBallsMesh();
+		assetManager.setSphereBasicMaterial();
 
 		setTimeout(()=> {
 			params.isGamePaused = false ;
@@ -21,6 +22,7 @@ function GameControl() {
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();
 		assetManager.markFailureBall( failureBall );
+		assetManager.setSphereFailureMaterial();
 		
 	};
 
