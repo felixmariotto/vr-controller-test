@@ -50,7 +50,9 @@ function Animate() {
 
         for ( let i = 0 ; i < ticks ; i++ ) {
 
-            cannonWorld.step( delta / ticks );
+            cannonWorld.step(
+            	( delta / ticks ) * ( gameControl.params.isSlowed ? SLOW_DOWN : 1 )
+            );
 
         };
 

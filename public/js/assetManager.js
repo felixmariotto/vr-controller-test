@@ -182,7 +182,7 @@ function AssetManager() {
 	// memo events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
 
 	controllerRight.mesh.addEventListener('selectstart', ()=>{
-		addBall();
+		gameControl.start();
 	});
 
 	controllerRight.mesh.addEventListener('squeezestart', ()=>{
@@ -195,11 +195,11 @@ function AssetManager() {
 
 	// FUNCTIONS
 
-	
+	/*
 	setInterval(()=> {
 		addBall()
 	}, 800);
-	
+	*/
 
 	function addBall() {
 

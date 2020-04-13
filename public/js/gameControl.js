@@ -6,26 +6,42 @@ function GameControl() {
 		isSlowed: false
 	};
 
+	//
+
 	function start() {
 
-		assetManager.emptyBallsMesh();
-		assetManager.setSphereBasicMaterial();
+		if ( !params.isGamePaused ) {
+			endGame();
+		}; 
 
 		setTimeout(()=> {
+
+			assetManager.emptyBallsMesh();
+			assetManager.setSphereBasicMaterial();
 			params.isGamePaused = false ;
+
 		}, 0 );
 
 	};
 
+	//
+
 	function endGame( failureBall ) {
 
-		if ( audio ) audio.playFailure( failureBall );
+		if ( failureBall ) {
+
+			if ( audio ) audio.playFailure( failureBall );
+			assetManager.markFailureBall( failureBall );
+			assetManager.setSphereFailureMaterial();
+
+		};
+
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();
-		assetManager.markFailureBall( failureBall );
-		assetManager.setSphereFailureMaterial();
 		
 	};
+
+	//
 
 	function setSpeedSlow() {
 		params.isSlowed = true ;
@@ -34,6 +50,8 @@ function GameControl() {
 	function setSpeedNormal() {
 		params.isSlowed = false ;
 	};
+
+	//
 
 	return {
 		start,
