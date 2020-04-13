@@ -65,7 +65,7 @@ function AssetManager() {
 
 		var buttonBody = new CANNON.Body({
 			mass: 0,
-			shape: new CANNON.Box( new CANNON.Vec3( 0.25, 0.2, 0.25 ) ),
+			shape: new CANNON.Box( new CANNON.Vec3( 0.1225, 0.1, 0.1225 ) ),
 			position: new CANNON.Vec3( 1.2, 0.95, -0.5 )
 		});
 
