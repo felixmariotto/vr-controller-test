@@ -194,7 +194,7 @@ function AssetManager() {
 
 	// FUNCTIONS
 
-	
+	/*
 	setInterval(()=> {
 		addBall()
 		addBall()
@@ -202,7 +202,7 @@ function AssetManager() {
 		addBall()
 		addBall()
 	}, 500);
-	
+	*/
 
 	function addBall() {
 
