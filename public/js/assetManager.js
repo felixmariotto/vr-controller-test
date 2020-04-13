@@ -46,7 +46,7 @@ function AssetManager() {
 			new THREE.MeshLambertMaterial()
 		);
 
-	desk.position.set( 1.5, 0, -1 );
+	desk.position.set( 1.2, 0.5, -0.5 );
 
 	scene.add( desk );
 
@@ -57,9 +57,26 @@ function AssetManager() {
 				new THREE.MeshLambertMaterial({ color: 0x00ff00 })
 			);
 
-		button.position.y += 0.5;
+		button.position.y += 0.45;
 
 		desk.add( button );
+
+		//
+
+		var buttonBody = new CANNON.Body({
+			mass: 0,
+			shape: new CANNON.Box( new CANNON.Vec3( 0.25, 0.2, 0.25 ) ),
+			position: new CANNON.Vec3( 1.2, 0.95, -0.5 )
+		});
+
+		buttonBody.addEventListener("collide",function(e){
+			button.material.color = new THREE.Color(0xffffff);
+			console.log("The sphere just collided with the ground!");
+			console.log("Collided with body:",e.body);
+			console.log("Contact between bodies:",e.contact);
+		});
+
+		cannonWorld.addBody( buttonBody );
 
 	// CONTROLLERS
 
