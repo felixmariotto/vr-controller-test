@@ -1,4 +1,6 @@
 
+var guiInputHelper ;
+
 function GameControl() {
 
 	var settings = {
@@ -10,8 +12,8 @@ function GameControl() {
 	
 	gui.position.set(-0.5, 0, 0);
 
-	gui.add(settings, 'speed')
-	gui.add(settings, 'friction')
+	gui.add(settings, 'speed').listen();
+	gui.add(settings, 'friction').listen();
 
 	scene.add( gui );
 
@@ -20,7 +22,11 @@ function GameControl() {
 
 	dat.GUIVR.enableMouse( camera );
 
-	var guiInputHelper = dat.GUIVR.addInputObject( assetManager.controllerRight.mesh )
-	scene.add( guiInputHelper )
+	// console.log( assetManager.controllerRight.mesh )
+
+	guiInputHelper = dat.GUIVR.addInputObject( assetManager.controllerRight.mesh )
+	scene.add( guiInputHelper );
+
+	console.log( guiInputHelper )
 
 };

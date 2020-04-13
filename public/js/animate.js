@@ -9,6 +9,14 @@ function Animate() {
 
 	function update( delta ) {
 
+		// temp
+		if ( guiInputHelper ) {
+			guiInputHelper.visible = true ;
+			guiInputHelper.children[0].visible = true ;
+		};
+
+		//
+
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach( (controller)=>{
 
 			controller.body.velocity.x = controller.mesh.position.x - controller.body.position.x;
