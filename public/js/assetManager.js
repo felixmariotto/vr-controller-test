@@ -33,41 +33,22 @@ function AssetManager() {
 
 	scene.add( room );
 
-
-
-
-
-
-
-
 	// GAME SPHERE
-
-	var sphereGeometry = new THREE.IcosahedronBufferGeometry( GAME_SPHERE_RADIUS, 1 );
-
-	sphere = new THREE.Mesh(
-			sphereGeometry,
-			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
-		);
-
-	sphere.position.copy( GAME_SPHERE_CENTER );
-	
-	// scene.add( sphere );
-
-	//
 
 	var uniforms = { 'widthFactor': { value: 1 } };
 
-	var customMaterial = new THREE.ShaderMaterial( {
+	var customMaterial = new THREE.ShaderMaterial({
 
 		uniforms: uniforms,
 		vertexShader: document.getElementById( 'vertexShader' ).textContent,
 		fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
 		side: THREE.DoubleSide
 
-	} );
+	});
 
 	customMaterial.extensions.derivatives = true;
 
+	var sphereGeometry = new THREE.IcosahedronBufferGeometry( GAME_SPHERE_RADIUS, 1 );
 	sphereGeometry.deleteAttribute( 'normal' );
 	sphereGeometry.deleteAttribute( 'uv' );
 
@@ -98,13 +79,6 @@ function AssetManager() {
 		geometry.setAttribute( 'center', new THREE.BufferAttribute( centers, 3 ) );
 
 	};
-
-
-
-
-
-
-
 
 	// DESK
 
@@ -168,7 +142,6 @@ function AssetManager() {
 				controller.mesh.position.y,
 				controller.mesh.position.z
 			),
-			// shape: new CANNON.Sphere( 0.1 ),
 			velocity: new CANNON.Vec3( 0, 0, 0 ),
 			fixedRotation: true
 		});
@@ -275,22 +248,13 @@ function AssetManager() {
 
 		ball.body.addEventListener("collide",function(e){
 
-			// if ( audio ) audio.playBounce( e.target.rootMesh );
+			if ( audio ) audio.playBounce( e.target.rootMesh );
 
 			if ( e.body.customType !== "ball" ) {
 
 				addBall();
 
-				if ( audio ) audio.playBounce( e.target.rootMesh );
-
 			};
-
-			/*
-			e.target
-			console.log("The sphere just collided with the ground!");
-			console.log("Collided with body:",e.body);
-			console.log("Contact between bodies:",e.contact);
-			*/
 
 		});
 
