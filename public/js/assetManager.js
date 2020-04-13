@@ -59,7 +59,7 @@ function AssetManager() {
 
 		controller.body = new CANNON.Body({
 			mass: 5,
-			position: new CANNON.Vec3( 
+			position: new CANNON.Vec3(
 				controller.mesh.position.x,
 				controller.mesh.position.y,
 				controller.mesh.position.z
