@@ -20,6 +20,8 @@ function GameControl() {
 			assetManager.setSphereBasicMaterial();
 			params.isGamePaused = false ;
 
+			assetManager.addBall();
+
 		}, 0 );
 
 	};
