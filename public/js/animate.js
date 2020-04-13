@@ -17,6 +17,12 @@ function Animate() {
 
 			// console.log( controller.body.velocity )
 
+			controller.body.position.set(
+				controller.mesh.position.x,
+				controller.mesh.position.y,
+				controller.mesh.position.z
+			);
+
 		});
 
 		cannonWorld.step( TIME_STEP, delta, MAX_SUBSTEP );
