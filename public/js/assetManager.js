@@ -4,6 +4,9 @@ function AssetManager() {
 	const FAST_BALL_SPEED = 0.5;
 	const SLOW_BALL_SPEED = 0.2;
 
+	const MIN_BALL_VELOCITY = 0.2 ;
+	const MAX_BALL_VELOCITY = 0.6 ;
+
 	const GAME_SPHERE_RADIUS = 0.5;
 	const BALL_RADIUS = 0.02;
 
@@ -57,7 +60,8 @@ function AssetManager() {
 		controller.body = {
 			mass: 5,
 			position: controller.mesh.position,
-			shape: new CANNON.Sphere( 0.2 )
+			shape: new CANNON.Sphere( 0.2 ),
+			velocity: new CANNON.Vec3( 0, 0, 0 )
 		}
 
 	});
@@ -99,6 +103,14 @@ function AssetManager() {
 
 	function addBall() {
 
+		var newVelocity = new CANNON.Vec3(
+			Math.random() - 0.5,
+			Math.random() - 0.5,
+			Math.random() - 0.5
+		);
+		newVelocity.normalize();
+		newVelocity.scale( MIN_BALL_VELOCITY + (Math.random() * ( MAX_BALL_VELOCITY - MIN_BALL_VELOCITY )), newVelocity );
+
 		var ball = {
 
 			mesh: new THREE.Mesh(
@@ -110,15 +122,10 @@ function AssetManager() {
 				mass: 5, // kg
 				position: new CANNON.Vec3( 0, 0, 0 ), // m
 				shape: new CANNON.Sphere( BALL_RADIUS ),
-				velocity: new CANNON.Vec3(
-					Math.random() - 0.5,
-					Math.random() - 0.5,
-					Math.random() - 0.5
-				)
+				velocity: newVelocity
 			})
 
 		};
-
 
 		sphereSpace.add( ball.mesh );
 		cannonWorld.addBody( ball.body );
@@ -130,7 +137,9 @@ function AssetManager() {
 	return {
 		GAME_SPHERE_RADIUS,
 		balls,
-		params
+		params,
+		controllerRight,
+		controllerLeft
 	};
 
 };

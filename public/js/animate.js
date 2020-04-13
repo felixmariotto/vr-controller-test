@@ -9,6 +9,13 @@ function Animate() {
 
 	function update( delta ) {
 
+		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
+
+			controller.body.velocity.x = controller.mesh.position.x - controller.body.position.x;
+			controller.body.velocity.z = controller.mesh.position.z - controller.body.position.z;
+
+		});
+
 		cannonWorld.step(TIME_STEP, delta, MAX_SUBSTEP);
 
 		assetManager.balls.forEach( ( ball )=> {
