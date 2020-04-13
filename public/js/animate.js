@@ -23,12 +23,16 @@ function Animate() {
 				controller.mesh.position.z
 			);
 
+			controller.mesh.rotation.y += Math.PI / 2 ;
+
 			controller.body.quaternion.set(
 				controller.mesh.quaternion.x,
 				controller.mesh.quaternion.y,
 				controller.mesh.quaternion.z,
 				controller.mesh.quaternion.w
 			);
+
+			controller.mesh.rotation.y -= Math.PI / 2 ;
 
 		});
 
