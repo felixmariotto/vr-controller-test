@@ -1,8 +1,6 @@
 
 function Audio() {
 
-	console.log('coucou')
-
 	var audioLoader = new THREE.AudioLoader();
 	var audioListener = new THREE.AudioListener();
 	camera.add( audioListener );
@@ -34,7 +32,7 @@ function Audio() {
 
 	function playFailure( emitter ) {
 
-		emitter.add( failure );
+		emitter.mesh.add( failure );
 
 		setTimeout(()=> {
 

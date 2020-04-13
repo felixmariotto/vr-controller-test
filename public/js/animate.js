@@ -41,20 +41,24 @@ function Animate() {
 
 		});
 
-		assetManager.balls.forEach( ( ball )=> {
+		if ( !gameControl.params.isGamePaused ) {
 
-			ball.mesh.position.copy( ball.body.position );
+			assetManager.balls.forEach( ( ball )=> {
 
-			// check if the ball went out of the game sphere
+				ball.mesh.position.copy( ball.body.position );
 
-			if ( ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) >
-				 assetManager.GAME_SPHERE_RADIUS ) {
+				// check if the ball went out of the game sphere
 
-				gameControl.endGame( ball );
+				if ( ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) >
+					 assetManager.GAME_SPHERE_RADIUS ) {
 
-			};
+					gameControl.endGame( ball );
 
-		});
+				};
+
+			});
+
+		};
 
 	};
 

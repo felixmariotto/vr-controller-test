@@ -7,7 +7,7 @@ function AssetManager() {
 	const MIN_BALL_VELOCITY = 0.2 ;
 	const MAX_BALL_VELOCITY = 0.4 ;
 
-	const GAME_SPHERE_RADIUS = 0.4;
+	const GAME_SPHERE_RADIUS = 0.3;
 	const GAME_SPHERE_CENTER = new THREE.Vector3( 0, 1, -0.5 );
 
 	const BALL_RADIUS = 0.03;
