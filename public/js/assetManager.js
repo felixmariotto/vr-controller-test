@@ -45,7 +45,7 @@ function AssetManager() {
 
 		mesh: renderer.xr.getController(0),
 		helper: new THREE.Mesh(
-				new THREE.SphereBufferGeometry( 0.2, 16, 16 ),
+				new THREE.SphereBufferGeometry( 0.1, 16, 16 ),
 				new THREE.MeshNormalMaterial()
 			)
 
@@ -70,7 +70,7 @@ function AssetManager() {
 				controller.mesh.position.y,
 				controller.mesh.position.z
 			),
-			shape: new CANNON.Sphere( 0.1 ),
+			shape: /* new CANNON.Sphere( 0.1 ) */ new CANNON.Box(new CANNON.Vec3(0.2,0.2,0.2)),
 			velocity: new CANNON.Vec3( 0, 0, 0 )
 		});
 
