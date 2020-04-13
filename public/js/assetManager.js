@@ -108,8 +108,8 @@ function AssetManager() {
 
 		var shape = new CANNON.Cylinder( 0.1, 0.1, 0.02, 20 );
 		var shapeQuaternion = new CANNON.Quaternion();
-		shapeQuaternion.setFromEuler( 0, 0, Math.PI / 2 );
-		controller.body.addShape( shape, shapeQuaternion );
+		shapeQuaternion.setFromEuler( 0, 0, Math.PI / 2, "XYZ" );
+		controller.body.addShape( shape, null, shapeQuaternion );
 
 		cannonWorld.addBody( controller.body );
 
