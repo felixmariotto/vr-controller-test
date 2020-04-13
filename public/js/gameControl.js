@@ -15,10 +15,12 @@ function GameControl() {
 
 	scene.add( gui );
 
-	dat.GUIVR.enableMouse(camera);
+	gui.position.set( 1, 0.9, -1 );
+	gui.rotation.x -= Math.PI / 6 ;
 
-	// Add right Vive controller
-	const guiInput = dat.GUIVR.addInputObject( assetManager.controllerRight.mesh );
-	scene.add( guiInput );
+	dat.GUIVR.enableMouse( camera );
+
+	var guiInputHelper = dat.GUIVR.addInputObject( assetManager.controllerRight.mesh )
+	scene.add( guiInputHelper )
 
 };
