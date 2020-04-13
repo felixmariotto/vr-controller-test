@@ -31,6 +31,7 @@ function Animate() {
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
 
 			controller.helper.position.copy( controller.body.position );
+			controller.helper.quaternion.copy( controller.body.quaternion );
 
 		});
 

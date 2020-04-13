@@ -108,23 +108,7 @@ function AssetManager() {
 
 		cannonWorld.addBody( controller.body );
 
-		console.log( controller.body )
-
-		CANNON.Demo.prototype.addVisual( controller.body )
-
-		//
-
-		/*
-		controller.helper = new THREE.Mesh(
-			new THREE.SphereBufferGeometry( 0.1, 16, 16 ),
-			new THREE.MeshNormalMaterial()
-		);
-		*/
-
-		controller.helper = new THREE.Mesh(
-			new THREE.CylinderBufferGeometry( 0.1, 0.1, 0.05, 20 ),
-			new THREE.MeshNormalMaterial()
-		);
+		controller.helper = CANNON.Demo.prototype.addVisual( controller.body );
 
 		scene.add( controller.helper );
 

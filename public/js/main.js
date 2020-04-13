@@ -9,10 +9,6 @@ const HEIGHT = window.innerHeight;
 
 var gameSpeed = 1 ;
 
-// var demo = new CANNON.Demo();
-
-console.log( CANNON.Demo.prototype.addVisual )
-
 // LISTENERS
 
 window.addEventListener('load', function() {

@@ -925,14 +925,19 @@ CANNON.Demo.prototype.addVisual = function(body){
         mesh = this.shape2mesh(body);
     };
 
-    if (mesh) { /*
+    if (mesh) {
+        /*
         // Add body
         this.bodies.push(body);
         this.visuals.push(mesh);
         body.visualref = mesh;
         body.visualref.visualId = this.bodies.length - 1;
-        //mesh.useQuaternion = true; */
+        //mesh.useQuaternion = true; 
         scene.add(mesh);
+        */
+
+        return mesh ;
+
     };
 
 };
