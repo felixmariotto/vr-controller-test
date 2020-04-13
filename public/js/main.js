@@ -1,7 +1,7 @@
 
 var assetManager ;
 
-var scene, renderer, camera, stats, gltfLoader, clock, gameControl;
+var scene, renderer, camera, stats, gltfLoader, clock, gameControl, audio;
 var cannonWorld, animate;
 
 const WIDTH = window.innerWidth;
@@ -56,7 +56,11 @@ function main() {
 	renderer.xr.enabled = true;
 	document.body.appendChild( renderer.domElement );
 
-	document.body.appendChild( VRButton.createButton( renderer ) );
+	var vrButton = VRButton.createButton( renderer );
+	document.body.appendChild( vrButton );
+	vrButton.addEventListener('click', ()=> {
+		audio = Audio();
+	});
 
 	// CANNON JS
 

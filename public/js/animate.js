@@ -4,8 +4,8 @@
 
 function Animate() {
 
-	const TIME_STEP = 1 / 120 ;
-	const MAX_SUBSTEP = 3 ;
+	const TIME_STEP = 1 / 160 ;
+	// const MAX_SUBSTEP = 3 ;
 
 	function update( delta ) {
 
@@ -32,7 +32,7 @@ function Animate() {
 
 		});
 
-		cannonWorld.step( TIME_STEP, delta, MAX_SUBSTEP );
+		cannonWorld.step( TIME_STEP, delta );
 
 		// console.log( assetManager.controllerRight.body.position )
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{

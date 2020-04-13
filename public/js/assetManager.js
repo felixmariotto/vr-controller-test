@@ -157,10 +157,20 @@ function AssetManager() {
 
 	// FUNCTIONS
 
+	/*
+	setInterval(()=> {
+		addBall()
+		addBall()
+		addBall()
+		addBall()
+		addBall()
+	}, 500);
+	*/
+
 	function addBall() {
 
 		// avoid accidental double-hits
-		if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
+		// if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
 		lastBallPop = Date.now();
 
 		var newVelocity = new CANNON.Vec3(
@@ -196,7 +206,11 @@ function AssetManager() {
 		ball.body.addEventListener("collide",function(e){
 
 			if ( e.body.customType !== "ball" ) {
+
 				addBall();
+
+				if ( audio ) audio.playBounce();
+
 			};
 
 			/*
