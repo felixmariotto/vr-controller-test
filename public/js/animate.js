@@ -22,6 +22,11 @@ function Animate() {
 		cannonWorld.step(TIME_STEP, delta, MAX_SUBSTEP);
 
 		// console.log( assetManager.controllerRight.body.position )
+		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
+
+			controller.helper.position.copy( controller.body.position );
+
+		});
 
 		assetManager.balls.forEach( ( ball )=> {
 
