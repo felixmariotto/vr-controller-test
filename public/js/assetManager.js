@@ -12,6 +12,8 @@ function AssetManager() {
 
 	const BALL_RADIUS = 0.03;
 
+	const FAILURE_BALL_MATERIAL = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+
 	var lastBallPop = 0;
 	const BALL_POP_MIN_SPAN = 500; // ms
 
@@ -267,6 +269,15 @@ function AssetManager() {
 
 	//
 
+	function markFailureBall( failureBall ) {
+
+		failureBall.mesh.scale.setScalar( 1.2 );
+		failureBall.mesh.material = FAILURE_BALL_MATERIAL;
+
+	};
+
+	//
+
 	return {
 		GAME_SPHERE_CENTER,
 		GAME_SPHERE_RADIUS,
@@ -276,7 +287,8 @@ function AssetManager() {
 		emptyBallsPhysics,
 		params,
 		controllerRight,
-		controllerLeft
+		controllerLeft,
+		markFailureBall
 	};
 
 };

@@ -15,10 +15,11 @@ function GameControl() {
 
 	};
 
-	function endGame() {
+	function endGame( failureBall ) {
 
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();
+		assetManager.markFailureBall( failureBall );
 
 	};
 

@@ -50,7 +50,7 @@ function Animate() {
 			if ( ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) >
 				 assetManager.GAME_SPHERE_RADIUS ) {
 
-				gameControl.endGame();
+				gameControl.endGame( ball );
 
 			};
 
