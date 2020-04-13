@@ -40,10 +40,29 @@ function AssetManager() {
 
 	// CONTROLLERS
 
-	controllerRight = renderer.xr.getController(0);
-	controllerLeft = renderer.xr.getController(1);
+	controllerRight = {
 
-	scene.add( controllerRight, controllerLeft );
+		mesh: renderer.xr.getController(0),
+
+	};
+
+	controllerLeft = {
+
+		mesh: renderer.xr.getController(1),
+
+	};
+
+	[ controllerRight, controllerLeft ].forEach( (controller)=> {
+
+		controller.body = {
+			mass: 5,
+			position: controller.mesh.position,
+			shape: new CANNON.Sphere( 0.2 )
+		}
+
+	});
+
+	scene.add( controllerRight.mesh, controllerLeft.mesh );
 
 	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
 		addRacketToController( glb, controllerLeft );
@@ -56,7 +75,7 @@ function AssetManager() {
 	function addRacketToController( glb, controller ) {
 		glb.scene.scale.setScalar( 0.35 );
 		glb.scene.rotation.x -= Math.PI / 3.5;
-		controller.add( glb.scene );
+		controller.mesh.add( glb.scene );
 	};
 
 	// CONTROLLERS EVENTS
@@ -64,15 +83,15 @@ function AssetManager() {
 
 	addBall();
 
-	controllerRight.addEventListener('selectstart', ()=>{
+	controllerRight.mesh.addEventListener('selectstart', ()=>{
 		addBall();
 	});
 
-	controllerRight.addEventListener('squeezestart', ()=>{
+	controllerRight.mesh.addEventListener('squeezestart', ()=>{
 		params.ballSpeed = SLOW_BALL_SPEED;
 	});
 
-	controllerRight.addEventListener('squeezeend', ()=>{
+	controllerRight.mesh.addEventListener('squeezeend', ()=>{
 		params.ballSpeed = FAST_BALL_SPEED;
 	});
 
