@@ -33,16 +33,78 @@ function AssetManager() {
 
 	scene.add( room );
 
+
+
+
+
+
+
+
 	// GAME SPHERE
 
+	var sphereGeometry = new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 10, 10);
+
 	sphere = new THREE.Mesh(
-			new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 10, 10),
+			sphereGeometry,
 			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
 		);
 
 	sphere.position.copy( GAME_SPHERE_CENTER );
 	
-	scene.add( sphere );
+	// scene.add( sphere );
+
+	//
+
+	var uniforms = { 'widthFactor': { value: 0.1 } };
+
+	var customMaterial = new THREE.ShaderMaterial( {
+
+		uniforms: uniforms,
+		vertexShader: document.getElementById( 'vertexShader' ).textContent,
+		fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+		side: THREE.DoubleSide
+
+	} );
+
+	customMaterial.extensions.derivatives = true;
+
+	sphereGeometry.deleteAttribute( 'normal' );
+	sphereGeometry.deleteAttribute( 'uv' );
+
+	setupAttributes( sphereGeometry );
+
+	mesh2 = new THREE.Mesh( sphereGeometry, customMaterial );
+	mesh2.position.copy( GAME_SPHERE_CENTER );
+
+	scene.add( mesh2 );
+
+	function setupAttributes( geometry ) {
+
+		var vectors = [
+			new THREE.Vector3( 1, 0, 0 ),
+			new THREE.Vector3( 0, 1, 0 ),
+			new THREE.Vector3( 0, 0, 1 )
+		];
+
+		var position = geometry.attributes.position;
+		var centers = new Float32Array( position.count * 3 );
+
+		for ( var i = 0, l = position.count; i < l; i ++ ) {
+
+			vectors[ i % 3 ].toArray( centers, i * 3 );
+
+		}
+
+		geometry.setAttribute( 'center', new THREE.BufferAttribute( centers, 3 ) );
+
+	};
+
+
+
+
+
+
+
 
 	// DESK
 

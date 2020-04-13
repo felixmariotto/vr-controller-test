@@ -10,12 +10,12 @@ function Audio() {
 
 	audioLoader.load( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket-game/bounce.ogg', (buffer)=> {
 		bounce.setBuffer( buffer );
-		sound.setRefDistance( 3 );
+		bounce.setRefDistance( 3 );
 	});
 
 	audioLoader.load( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket-game/failure.ogg', (buffer)=> {
 		failure.setBuffer( buffer );
-		sound.setRefDistance( 3 );
+		failure.setRefDistance( 3 );
 	})
 
 	//
