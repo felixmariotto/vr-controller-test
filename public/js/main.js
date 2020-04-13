@@ -63,6 +63,8 @@ function main() {
 	cannonWorld = new CANNON.World();
 	// cannonWorld.gravity.set(0, -9.82, 0 ); // m/s²
 
+	console.log( cannonWorld );
+
 	//
 
 	gltfLoader = new THREE.GLTFLoader();

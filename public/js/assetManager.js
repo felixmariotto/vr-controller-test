@@ -71,9 +71,13 @@ function AssetManager() {
 
 		buttonBody.addEventListener("collide",function(e){
 			button.material.color = new THREE.Color(0xffffff);
+			gameControl.start();
+			/*
+			e.target
 			console.log("The sphere just collided with the ground!");
 			console.log("Collided with body:",e.body);
 			console.log("Contact between bodies:",e.contact);
+			*/
 		});
 
 		cannonWorld.addBody( buttonBody );
@@ -191,9 +195,28 @@ function AssetManager() {
 
 	};
 
+	//
+
+	function emptyBalls() {
+
+		balls.forEach( (ball)=> {
+
+			scene.remove( ball.mesh );
+			ball.mesh.geometry.dispose();
+			ball.mesh.material.dispose();
+
+			cannonWorld.remove( ball.body );
+
+		});
+
+	};
+
+	//
+
 	return {
 		GAME_SPHERE_RADIUS,
 		balls,
+		emptyBalls,
 		params,
 		controllerRight,
 		controllerLeft
