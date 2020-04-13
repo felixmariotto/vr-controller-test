@@ -7,8 +7,11 @@ function GameControl() {
 
 	function start() {
 
-		params.isGamePaused = false ;
-		assetManager.emptyBalls();
+		assetManager.emptyBallsMesh();
+
+		setTimeout(()=> {
+			params.isGamePaused = false ;
+		}, 0 );
 
 	};
 

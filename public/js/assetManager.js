@@ -239,19 +239,17 @@ function AssetManager() {
 
 	//
 
-	function emptyBalls() {
+	function emptyBallsMesh() {
 
-		balls.forEach( (ball)=> {
+		for ( let i = balls.length -1 ; i > -1 ; i -- ) {
 
-			scene.remove( ball.mesh );
-			ball.mesh.geometry.dispose();
-			ball.mesh.material.dispose();
+			scene.remove( balls[ i ].mesh );
+			balls[ i ].mesh.geometry.dispose();
+			balls[ i ].mesh.material.dispose();
 
-			setTimeout( ()=> {
-				cannonWorld.removeBody( ball.body );
-			}, 0 );
+			balls.pop();
 
-		});
+		};
 
 	};
 
@@ -274,7 +272,7 @@ function AssetManager() {
 		GAME_SPHERE_RADIUS,
 		balls,
 		addBall,
-		emptyBalls,
+		emptyBallsMesh,
 		emptyBallsPhysics,
 		params,
 		controllerRight,
