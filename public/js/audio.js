@@ -26,7 +26,7 @@ function Audio() {
 
 		setTimeout(()=>{
 
-			bounce.play();
+			failure.play();
 
 		}, 0 );
 
@@ -38,7 +38,7 @@ function Audio() {
 
 		setTimeout(()=> {
 
-			failure.play();
+			bounce.play();
 
 		}, 0 );
 
