@@ -34,6 +34,8 @@ function AssetManager() {
 			new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 16, 16),
 			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
 		);
+
+	sphere.position.copy( GAME_SPHERE_CENTER );
 	
 	scene.add( sphere );
 
@@ -132,7 +134,11 @@ function AssetManager() {
 
 			body: new CANNON.Body({
 				mass: 5, // kg
-				position: new CANNON.Vec3( 0, 0, 0 ), // m
+				position: new CANNON.Vec3(
+					GAME_SPHERE_CENTER.x,
+					GAME_SPHERE_CENTER.y,
+					GAME_SPHERE_CENTER.z
+				),
 				shape: new CANNON.Sphere( BALL_RADIUS ),
 				velocity: newVelocity
 			})
