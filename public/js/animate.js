@@ -5,7 +5,7 @@
 function Animate() {
 
 	const TIME_STEP = 1 / 160 ;
-	// const MAX_SUBSTEP = 3 ;
+	const SLOW_DOWN = 0.5 ; // 0 to 1 range
 
 	function update( delta ) {
 
@@ -32,7 +32,7 @@ function Animate() {
 
 		});
 
-		cannonWorld.step( TIME_STEP, delta );
+		cannonWorld.step( TIME_STEP * ( gameControl.params.isSlowed ? SLOW_DOWN : 1 ) , delta );
 
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
 

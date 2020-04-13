@@ -2,7 +2,8 @@
 function GameControl() {
 
 	var params = {
-		isGamePaused: false
+		isGamePaused: false,
+		isSlowed: false
 	};
 
 	function start() {
@@ -26,10 +27,20 @@ function GameControl() {
 		
 	};
 
+	function setSpeedSlow() {
+		params.isSlowed = true ;
+	};
+
+	function setSpeedNormal() {
+		params.isSlowed = false ;
+	};
+
 	return {
 		start,
 		endGame,
-		params
+		params,
+		setSpeedSlow,
+		setSpeedNormal
 	};
 
 };

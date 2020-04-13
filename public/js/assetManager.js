@@ -1,28 +1,28 @@
 
 function AssetManager() {
 
-	const FAST_BALL_SPEED = 0.5;
-	const SLOW_BALL_SPEED = 0.2;
-
+	// min and max init speed for new balls
 	const MIN_BALL_VELOCITY = 0.1 ;
 	const MAX_BALL_VELOCITY = 0.2 ;
-
-	const GAME_SPHERE_RADIUS = 0.3;
-	const GAME_SPHERE_CENTER = new THREE.Vector3( 0, 1, -0.5 );
 
 	const BALL_RADIUS = 0.025;
 
 	const FAILURE_BALL_MATERIAL = new THREE.MeshLambertMaterial({ color: 0xff0000 });
 
+	// game zone
+	const GAME_SPHERE_RADIUS = 0.3;
+	const GAME_SPHERE_CENTER = new THREE.Vector3( 0, 1, -0.5 );
+
+	// those two are used to avoid accidentally pop several balls in one racket hit
 	var lastBallPop = 0;
 	const BALL_POP_MIN_SPAN = 500; // ms
 
 	var controllerRight, controllerLeft ;
 	var balls = [];
 
-	var params = {
-		ballSpeed: FAST_BALL_SPEED
-	};
+	/////////////
+	////  INIT
+	/////////////
 
 	// GRID ROOM
 
@@ -178,35 +178,19 @@ function AssetManager() {
 
 	scene.add( controllerRight.mesh, controllerLeft.mesh );
 
-	/*
-	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
-		addRacketToController( glb, controllerLeft );
-	});
-
-	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
-		addRacketToController( glb, controllerRight );
-	});
-
-	function addRacketToController( glb, controller ) {
-		glb.scene.scale.setScalar( 0.35 );
-		glb.scene.rotation.x -= Math.PI / 3.5;
-		controller.mesh.add( glb.scene );
-	};
-	*/
-
 	// CONTROLLERS EVENTS
-	// events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
+	// memo events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
 
 	controllerRight.mesh.addEventListener('selectstart', ()=>{
 		addBall();
 	});
 
 	controllerRight.mesh.addEventListener('squeezestart', ()=>{
-		params.ballSpeed = SLOW_BALL_SPEED;
+		gameControl.setSpeedSlow();
 	});
 
 	controllerRight.mesh.addEventListener('squeezeend', ()=>{
-		params.ballSpeed = FAST_BALL_SPEED;
+		gameControl.setSpeedNormal();
 	});
 
 	// FUNCTIONS
@@ -336,7 +320,6 @@ function AssetManager() {
 		addBall,
 		emptyBallsMesh,
 		emptyBallsPhysics,
-		params,
 		controllerRight,
 		controllerLeft,
 		markFailureBall,
