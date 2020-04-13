@@ -39,6 +39,28 @@ function AssetManager() {
 	
 	scene.add( sphere );
 
+	// DESK
+
+	var desk = new THREE.Mesh(
+			new THREE.BoxBufferGeometry( 0.3, 1, 0.3 ),
+			new THREE.MeshLambertMaterial()
+		);
+
+	desk.position.set( 1.5, 0, -1 );
+
+	scene.add( desk );
+
+		// button
+
+		var button = new THREE.Mesh(
+				new THREE.BoxBufferGeometry( 0.25, 0.2, 0.25 ),
+				new THREE.MeshLambertMaterial({ color: 0x00ff00 })
+			);
+
+		button.position.y += 0.5;
+
+		desk.add( button );
+
 	// CONTROLLERS
 
 	controllerRight = {
@@ -77,16 +99,6 @@ function AssetManager() {
 		cannonWorld.addBody( controller.body );
 
 		scene.add( controller.helper );
-
-		// pointer
-
-		var geometry = new THREE.BufferGeometry().setFromPoints( [ new THREE.Vector3( 0, 0, 0 ), new THREE.Vector3( 0, 0, - 1 ) ] );
-
-		var line = new THREE.Line( geometry );
-		line.name = 'line';
-		line.scale.z = 5;
-
-		controller.mesh.add( line );
 
 	});
 
