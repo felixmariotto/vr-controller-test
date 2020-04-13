@@ -55,7 +55,7 @@ function AssetManager() {
 
 		mesh: renderer.xr.getController(1),
 		helper: new THREE.Mesh(
-				new THREE.SphereBufferGeometry( 0.2, 16, 16 ),
+				new THREE.SphereBufferGeometry( 0.1, 16, 16 ),
 				new THREE.MeshNormalMaterial()
 			)
 
@@ -64,13 +64,13 @@ function AssetManager() {
 	[ controllerRight, controllerLeft ].forEach( (controller)=> {
 
 		controller.body = new CANNON.Body({
-			mass: 5,
+			mass: 0.1,
 			position: new CANNON.Vec3(
 				controller.mesh.position.x,
 				controller.mesh.position.y,
 				controller.mesh.position.z
 			),
-			shape: new CANNON.Sphere( 0.2 ),
+			shape: new CANNON.Sphere( 0.1 ),
 			velocity: new CANNON.Vec3( 0, 0, 0 )
 		});
 
@@ -133,7 +133,7 @@ function AssetManager() {
 			),
 
 			body: new CANNON.Body({
-				mass: 5, // kg
+				mass: 0.05, // kg
 				position: new CANNON.Vec3(
 					GAME_SPHERE_CENTER.x,
 					GAME_SPHERE_CENTER.y,
