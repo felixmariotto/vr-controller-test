@@ -42,7 +42,7 @@ function AssetManager() {
 
 	// GAME SPHERE
 
-	var sphereGeometry = new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 10, 10);
+	var sphereGeometry = new THREE.IcosahedronBufferGeometry( GAME_SPHERE_RADIUS, 1 );
 
 	sphere = new THREE.Mesh(
 			sphereGeometry,
@@ -55,7 +55,7 @@ function AssetManager() {
 
 	//
 
-	var uniforms = { 'widthFactor': { value: 0.1 } };
+	var uniforms = { 'widthFactor': { value: 1 } };
 
 	var customMaterial = new THREE.ShaderMaterial( {
 
