@@ -4,13 +4,13 @@ function AssetManager() {
 	const FAST_BALL_SPEED = 0.5;
 	const SLOW_BALL_SPEED = 0.2;
 
-	const MIN_BALL_VELOCITY = 0.2 ;
-	const MAX_BALL_VELOCITY = 0.4 ;
+	const MIN_BALL_VELOCITY = 0.1 ;
+	const MAX_BALL_VELOCITY = 0.2 ;
 
 	const GAME_SPHERE_RADIUS = 0.3;
 	const GAME_SPHERE_CENTER = new THREE.Vector3( 0, 1, -0.5 );
 
-	const BALL_RADIUS = 0.03;
+	const BALL_RADIUS = 0.025;
 
 	const FAILURE_BALL_MATERIAL = new THREE.MeshLambertMaterial({ color: 0xff0000 });
 
@@ -51,7 +51,7 @@ function AssetManager() {
 			new THREE.MeshLambertMaterial()
 		);
 
-	desk.position.set( 1.2, 0.5, -0.5 );
+	desk.position.set( 0.9, 0.5, -0.5 );
 
 	scene.add( desk );
 
@@ -71,7 +71,7 @@ function AssetManager() {
 		var buttonBody = new CANNON.Body({
 			mass: 0,
 			shape: new CANNON.Box( new CANNON.Vec3( 0.1225, 0.1, 0.1225 ) ),
-			position: new CANNON.Vec3( 1.2, 0.95, -0.5 )
+			position: new CANNON.Vec3( 0.9, 0.95, -0.5 )
 		});
 
 		buttonBody.addEventListener("collide",function(e){
