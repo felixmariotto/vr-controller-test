@@ -46,7 +46,7 @@ function Animate() {
 
 		*/
 
-		ticks = Math.round( ( delta / ( 1 / 60 ) ) * 5 );
+		ticks = Math.round( ( delta / ( 1 / 60 ) ) * 12 );
 
         for ( let i = 0 ; i < ticks ; i++ ) {
 
