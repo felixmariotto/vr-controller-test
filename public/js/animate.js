@@ -34,7 +34,6 @@ function Animate() {
 
 		cannonWorld.step( TIME_STEP, delta );
 
-		// console.log( assetManager.controllerRight.body.position )
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
 
 			controller.helper.position.copy( controller.body.position );
@@ -46,13 +45,14 @@ function Animate() {
 
 			ball.mesh.position.copy( ball.body.position );
 
-			/*
+			// check if the ball went out of the game sphere
 
-			if ( ballMesh.position.length() > assetManager.GAME_SPHERE_RADIUS ) {
-				gameSpeed = 0 ;
+			if ( ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) >
+				 assetManager.GAME_SPHERE_RADIUS ) {
+
+				gameControl.endGame();
+
 			};
-
-			*/
 
 		});
 

@@ -157,7 +157,7 @@ function AssetManager() {
 
 	// FUNCTIONS
 
-	/*
+	
 	setInterval(()=> {
 		addBall()
 		addBall()
@@ -165,10 +165,12 @@ function AssetManager() {
 		addBall()
 		addBall()
 	}, 500);
-	*/
 	
 
 	function addBall() {
+
+		// abort if game is paused
+		if ( gameControl.params.isGamePaused ) return 
 
 		// avoid accidental double-hits
 		if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
@@ -253,13 +255,27 @@ function AssetManager() {
 
 	};
 
+	function emptyBallsPhysics() {
+
+		balls.forEach( (ball)=> {
+
+			setTimeout( ()=> {
+				cannonWorld.removeBody( ball.body );
+			}, 0 );
+
+		});
+
+	};
+
 	//
 
 	return {
+		GAME_SPHERE_CENTER,
 		GAME_SPHERE_RADIUS,
 		balls,
 		addBall,
 		emptyBalls,
+		emptyBallsPhysics,
 		params,
 		controllerRight,
 		controllerLeft

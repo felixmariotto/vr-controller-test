@@ -8,25 +8,47 @@ function Audio() {
 	camera.add( audioListener );
 
 	var bounce = new THREE.PositionalAudio( audioListener );
+	var failure = new THREE.PositionalAudio( audioListener );
 
 	audioLoader.load( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket-game/bounce.ogg', (buffer)=> {
-		bounce.setBuffer(buffer);
+		bounce.setBuffer( buffer );
 	});
 
-	function playBounce( emmiter ) {
+	audioLoader.load( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket-game/failure.ogg', (buffer)=> {
+		failure.setBuffer( buffer );
+	})
 
-		emmiter.add( bounce );
+	//
+
+	function playBounce( emitter ) {
+
+		emitter.add( bounce );
 
 		setTimeout(()=>{
 
 			bounce.play();
-			
+
 		}, 0 );
 
 	};
 
+	function playFailure( emitter ) {
+
+		emitter.add( failure );
+
+		setTimeout(()=> {
+
+			failure.play();
+
+		}, 0 );
+
+	};
+
+	//
+
 	return {
-		playBounce
+		playBounce,
+		playFailure
 	};
 
 };
