@@ -70,7 +70,7 @@ function AssetManager() {
 				controller.mesh.position.y,
 				controller.mesh.position.z
 			),
-			shape: /* new CANNON.Sphere( 0.1 ) */ new CANNON.Box(new CANNON.Vec3(0.2,0.2,0.2)),
+			shape: new CANNON.Sphere( 0.1 ),
 			velocity: new CANNON.Vec3( 0, 0, 0 )
 		});
 
