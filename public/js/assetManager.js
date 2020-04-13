@@ -40,8 +40,8 @@ function AssetManager() {
 	var customMaterial = new THREE.ShaderMaterial({
 
 		uniforms: uniforms,
-		vertexShader: document.getElementById( 'vertexShader' ).textContent,
-		fragmentShader: document.getElementById( 'fragmentShader' ).textContent,
+		vertexShader: shaders.vertexShader,
+		fragmentShader: shaders.fragmentShader,
 		side: THREE.DoubleSide
 
 	});
