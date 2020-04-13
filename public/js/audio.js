@@ -13,7 +13,7 @@ function Audio() {
 		sound.setRefDistance( 3 );
 	});
 
-	audioLoader.load( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket-game/failure.mp3', (buffer)=> {
+	audioLoader.load( 'https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket-game/failure.ogg', (buffer)=> {
 		failure.setBuffer( buffer );
 		sound.setRefDistance( 3 );
 	})
