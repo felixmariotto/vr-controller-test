@@ -101,9 +101,10 @@ function AssetManager() {
 				controller.mesh.position.y,
 				controller.mesh.position.z
 			),
-			shape: new CANNON.Cylinder( 0.1, 0.1, 0.05, 20 ),
+			shape: new CANNON.Cylinder( 0.1, 0.1, 0.02, 20 ),
 			// shape: new CANNON.Sphere( 0.1 ),
-			velocity: new CANNON.Vec3( 0, 0, 0 )
+			velocity: new CANNON.Vec3( 0, 0, 0 ),
+			fixedRotation: true
 		});
 
 		cannonWorld.addBody( controller.body );
