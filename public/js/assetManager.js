@@ -121,6 +121,7 @@ function AssetManager() {
 
 	scene.add( controllerRight.mesh, controllerLeft.mesh );
 
+	/*
 	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
 		addRacketToController( glb, controllerLeft );
 	});
@@ -134,18 +135,10 @@ function AssetManager() {
 		glb.scene.rotation.x -= Math.PI / 3.5;
 		controller.mesh.add( glb.scene );
 	};
+	*/
 
 	// CONTROLLERS EVENTS
 	// events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
-
-	addBall();
-	addBall();
-	addBall();
-	addBall();
-	addBall();
-	addBall();
-	addBall();
-	addBall();
 
 	controllerRight.mesh.addEventListener('selectstart', ()=>{
 		addBall();
@@ -190,6 +183,23 @@ function AssetManager() {
 			})
 
 		};
+
+		ball.body.customType = "ball" ;
+
+		ball.body.addEventListener("collide",function(e){
+
+			if ( e.body.customType !== "ball" ) {
+				addBall();
+			};
+
+			/*
+			e.target
+			console.log("The sphere just collided with the ground!");
+			console.log("Collided with body:",e.body);
+			console.log("Contact between bodies:",e.contact);
+			*/
+
+		});
 
 		scene.add( ball.mesh );
 		cannonWorld.addBody( ball.body );
