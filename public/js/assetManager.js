@@ -108,6 +108,10 @@ function AssetManager() {
 
 		cannonWorld.addBody( controller.body );
 
+		console.log( controller.body )
+
+		CANNON.Demo.prototype.addVisual( controller.body )
+
 		//
 
 		/*

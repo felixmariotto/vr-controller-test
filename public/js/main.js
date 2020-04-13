@@ -9,6 +9,10 @@ const HEIGHT = window.innerHeight;
 
 var gameSpeed = 1 ;
 
+// var demo = new CANNON.Demo();
+
+console.log( CANNON.Demo.prototype.addVisual )
+
 // LISTENERS
 
 window.addEventListener('load', function() {
@@ -62,8 +66,6 @@ function main() {
 
 	cannonWorld = new CANNON.World();
 	// cannonWorld.gravity.set(0, -9.82, 0 ); // m/s²
-
-	console.log( cannonWorld );
 
 	//
 
