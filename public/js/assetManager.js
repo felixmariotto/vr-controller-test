@@ -57,12 +57,18 @@ function AssetManager() {
 
 	[ controllerRight, controllerLeft ].forEach( (controller)=> {
 
-		controller.body = {
+		controller.body = new CANNON.Body({
 			mass: 5,
-			position: controller.mesh.position,
+			position: new CANNON.Vec3( 
+				controller.mesh.position.x,
+				controller.mesh.position.y,
+				controller.mesh.position.z
+			),
 			shape: new CANNON.Sphere( 0.2 ),
 			velocity: new CANNON.Vec3( 0, 0, 0 )
-		}
+		});
+
+		cannonWorld.addBody( controller.body );
 
 	});
 

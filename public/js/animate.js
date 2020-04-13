@@ -14,6 +14,8 @@ function Animate() {
 			controller.body.velocity.x = controller.mesh.position.x - controller.body.position.x;
 			controller.body.velocity.z = controller.mesh.position.z - controller.body.position.z;
 
+			// console.log( controller.body.velocity )
+
 		});
 
 		cannonWorld.step(TIME_STEP, delta, MAX_SUBSTEP);
