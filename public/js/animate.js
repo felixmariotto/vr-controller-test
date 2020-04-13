@@ -16,7 +16,7 @@ function Animate() {
 				controller.mesh.position.y - controller.body.position.y,
 				controller.mesh.position.z - controller.body.position.z
 			);
-
+			
 			controller.body.position.set(
 				controller.mesh.position.x,
 				controller.mesh.position.y,

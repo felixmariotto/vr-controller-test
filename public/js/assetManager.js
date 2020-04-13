@@ -128,14 +128,10 @@ function AssetManager() {
 		});
 
 		buttonBody.addEventListener("collide",function(e){
+
 			button.material.color = new THREE.Color(0xffffff);
 			gameControl.start();
-			/*
-			e.target
-			console.log("The sphere just collided with the ground!");
-			console.log("Collided with body:",e.body);
-			console.log("Contact between bodies:",e.contact);
-			*/
+
 		});
 
 		cannonWorld.addBody( buttonBody );
@@ -170,28 +166,29 @@ function AssetManager() {
 
 		cannonWorld.addBody( controller.body );
 
+		//
+
 		controller.helper = CANNON.Demo.prototype.addVisual( controller.body );
 
 		scene.add( controller.helper );
 
+		//
+
+		controller.mesh.addEventListener('selectstart', ()=>{
+			gameControl.start();
+		});
+
+		controller.mesh.addEventListener('squeezestart', ()=>{
+			gameControl.setSpeedSlow();
+		});
+
+		controller.mesh.addEventListener('squeezeend', ()=>{
+			gameControl.setSpeedNormal();
+		});
+
 	});
 
 	scene.add( controllerRight.mesh, controllerLeft.mesh );
-
-	// CONTROLLERS EVENTS
-	// memo events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
-
-	controllerRight.mesh.addEventListener('selectstart', ()=>{
-		gameControl.start();
-	});
-
-	controllerRight.mesh.addEventListener('squeezestart', ()=>{
-		gameControl.setSpeedSlow();
-	});
-
-	controllerRight.mesh.addEventListener('squeezeend', ()=>{
-		gameControl.setSpeedNormal();
-	});
 
 	// FUNCTIONS
 
