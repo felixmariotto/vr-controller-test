@@ -11,16 +11,23 @@ function Animate() {
 
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach( (controller)=>{
 
-			controller.body.velocity.x = controller.mesh.position.x - controller.body.position.x;
-			controller.body.velocity.y = controller.mesh.position.y - controller.body.position.y;
-			controller.body.velocity.z = controller.mesh.position.z - controller.body.position.z;
-
-			// console.log( controller.body.velocity )
+			controller.body.velocity.set(
+				controller.mesh.position.x - controller.body.position.x,
+				controller.mesh.position.y - controller.body.position.y,
+				controller.mesh.position.z - controller.body.position.z
+			);
 
 			controller.body.position.set(
 				controller.mesh.position.x,
 				controller.mesh.position.y,
 				controller.mesh.position.z
+			);
+
+			controller.body.quaternion.set(
+				controller.mesh.quaternion.x,
+				controller.mesh.quaternion.y,
+				controller.mesh.quaternion.z,
+				controller.mesh.quaternion.w
 			);
 
 		});
