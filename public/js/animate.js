@@ -4,7 +4,7 @@
 
 function Animate() {
 
-	const TIME_STEP = 1 / 160 ;
+	const TIME_STEP = 1 / 600 ;
 	const SLOW_DOWN = 0.5 ; // 0 to 1 range
 
 	function update( delta ) {
@@ -32,7 +32,29 @@ function Animate() {
 
 		});
 
-		cannonWorld.step( TIME_STEP * ( gameControl.params.isSlowed ? SLOW_DOWN : 1 ) , delta );
+		/*
+
+		if ( gameControl.params.isSlowed ) {
+
+			cannonWorld.step( (1/60) * SLOW_DOWN );
+
+		} else {
+
+			cannonWorld.step( TIME_STEP, delta, 20 );
+
+		};
+
+		*/
+
+		ticks = Math.round( ( delta / ( 1 / 60 ) ) * 5 );
+
+        for ( let i = 0 ; i < ticks ; i++ ) {
+
+            cannonWorld.step( delta / ticks );
+
+        };
+
+		//
 
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
 

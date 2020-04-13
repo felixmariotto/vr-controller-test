@@ -198,11 +198,7 @@ function AssetManager() {
 	
 	setInterval(()=> {
 		addBall()
-		addBall()
-		addBall()
-		addBall()
-		addBall()
-	}, 500);
+	}, 800);
 	
 
 	function addBall() {
