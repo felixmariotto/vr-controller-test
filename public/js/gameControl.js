@@ -1,6 +1,7 @@
 
 function GameControl() {
 
+	/*
 	setInterval(()=> {
 
 		start();
@@ -12,6 +13,7 @@ function GameControl() {
 		assetManager.addBall();
 
 	}, 1000 );
+	*/
 
 	function start() {
 

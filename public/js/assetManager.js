@@ -212,7 +212,9 @@ function AssetManager() {
 			ball.mesh.geometry.dispose();
 			ball.mesh.material.dispose();
 
-			cannonWorld.removeBody( ball.body );
+			setTimeout( ()=> {
+				cannonWorld.removeBody( ball.body );
+			}, 0 );
 
 		});
 
