@@ -1,9 +1,17 @@
 
 function GameControl() {
 
-	setTimeout(()=>{
+	setInterval(()=> {
+
 		start();
-	}, 2000 );
+
+		assetManager.addBall();
+		assetManager.addBall();
+		assetManager.addBall();
+		assetManager.addBall();
+		assetManager.addBall();
+
+	}, 1000 );
 
 	function start() {
 

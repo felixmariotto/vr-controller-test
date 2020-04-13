@@ -223,6 +223,7 @@ function AssetManager() {
 	return {
 		GAME_SPHERE_RADIUS,
 		balls,
+		addBall,
 		emptyBalls,
 		params,
 		controllerRight,
