@@ -5,12 +5,15 @@ function AssetManager() {
 	const SLOW_BALL_SPEED = 0.2;
 
 	const MIN_BALL_VELOCITY = 0.2 ;
-	const MAX_BALL_VELOCITY = 0.6 ;
+	const MAX_BALL_VELOCITY = 0.4 ;
 
-	const GAME_SPHERE_RADIUS = 0.5;
+	const GAME_SPHERE_RADIUS = 0.4;
 	const GAME_SPHERE_CENTER = new THREE.Vector3( 0, 1, -0.5 );
 
-	const BALL_RADIUS = 0.02;
+	const BALL_RADIUS = 0.03;
+
+	var lastBallPop = 0;
+	const BALL_POP_MIN_SPAN = 500; // ms
 
 	var controllerRight, controllerLeft ;
 	var balls = [];
@@ -31,7 +34,7 @@ function AssetManager() {
 	// GAME SPHERE
 
 	sphere = new THREE.Mesh(
-			new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 16, 16),
+			new THREE.SphereBufferGeometry(GAME_SPHERE_RADIUS, 10, 10),
 			new THREE.MeshBasicMaterial({ wireframe: true, color: 0x00e5ff })
 		);
 
@@ -156,6 +159,10 @@ function AssetManager() {
 
 	function addBall() {
 
+		// avoid accidental double-hits
+		if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
+		lastBallPop = Date.now();
+
 		var newVelocity = new CANNON.Vec3(
 			Math.random() - 0.5,
 			Math.random() - 0.5,
@@ -167,7 +174,7 @@ function AssetManager() {
 		var ball = {
 
 			mesh: new THREE.Mesh(
-				new THREE.SphereBufferGeometry( BALL_RADIUS, 8, 8 ),
+				new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
 				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
 			),
 
