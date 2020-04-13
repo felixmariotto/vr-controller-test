@@ -85,23 +85,11 @@ function AssetManager() {
 	// CONTROLLERS
 
 	controllerRight = {
-
-		mesh: renderer.xr.getController(0),
-		helper: new THREE.Mesh(
-				new THREE.SphereBufferGeometry( 0.1, 16, 16 ),
-				new THREE.MeshNormalMaterial()
-			)
-
+		mesh: renderer.xr.getController(0)
 	};
 
 	controllerLeft = {
-
-		mesh: renderer.xr.getController(1),
-		helper: new THREE.Mesh(
-				new THREE.SphereBufferGeometry( 0.1, 16, 16 ),
-				new THREE.MeshNormalMaterial()
-			)
-
+		mesh: renderer.xr.getController(1)
 	};
 
 	[ controllerRight, controllerLeft ].forEach( (controller)=> {
@@ -119,6 +107,20 @@ function AssetManager() {
 		});
 
 		cannonWorld.addBody( controller.body );
+
+		//
+
+		/*
+		controller.helper = new THREE.Mesh(
+			new THREE.SphereBufferGeometry( 0.1, 16, 16 ),
+			new THREE.MeshNormalMaterial()
+		);
+		*/
+
+		controller.helper = new THREE.Mesh(
+			new THREE.CylinderBufferGeometry( 0.1, 0.1, 0.05, 20 ),
+			new THREE.MeshNormalMaterial()
+		);
 
 		scene.add( controller.helper );
 
