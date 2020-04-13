@@ -143,6 +143,13 @@ function AssetManager() {
 	// events : select, selectstart, selectend, squeeze, squeezestart, squeezeend, end
 
 	addBall();
+	addBall();
+	addBall();
+	addBall();
+	addBall();
+	addBall();
+	addBall();
+	addBall();
 
 	controllerRight.mesh.addEventListener('selectstart', ()=>{
 		addBall();
@@ -205,7 +212,7 @@ function AssetManager() {
 			ball.mesh.geometry.dispose();
 			ball.mesh.material.dispose();
 
-			cannonWorld.remove( ball.body );
+			cannonWorld.removeBody( ball.body );
 
 		});
 
