@@ -166,11 +166,12 @@ function AssetManager() {
 		addBall()
 	}, 500);
 	*/
+	
 
 	function addBall() {
 
 		// avoid accidental double-hits
-		// if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
+		if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
 		lastBallPop = Date.now();
 
 		var newVelocity = new CANNON.Vec3(
@@ -181,12 +182,14 @@ function AssetManager() {
 		newVelocity.normalize();
 		newVelocity.scale( MIN_BALL_VELOCITY + (Math.random() * ( MAX_BALL_VELOCITY - MIN_BALL_VELOCITY )), newVelocity );
 
+		var ballMesh = new THREE.Mesh(
+			new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
+			new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
+		);
+
 		var ball = {
 
-			mesh: new THREE.Mesh(
-				new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
-				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
-			),
+			mesh: ballMesh,
 
 			body: new CANNON.Body({
 				mass: 0.05, // kg
@@ -202,14 +205,17 @@ function AssetManager() {
 		};
 
 		ball.body.customType = "ball" ;
+		ball.body.rootMesh = ballMesh ;
 
 		ball.body.addEventListener("collide",function(e){
+
+			// if ( audio ) audio.playBounce( e.target.rootMesh );
 
 			if ( e.body.customType !== "ball" ) {
 
 				addBall();
 
-				if ( audio ) audio.playBounce();
+				if ( audio ) audio.playBounce( e.target.rootMesh );
 
 			};
 
