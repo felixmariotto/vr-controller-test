@@ -9,7 +9,7 @@ function Animate() {
 
 	function update( delta ) {
 
-		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
+		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach( (controller)=>{
 
 			controller.body.velocity.x = controller.mesh.position.x - controller.body.position.x;
 			controller.body.velocity.y = controller.mesh.position.y - controller.body.position.y;
@@ -19,7 +19,7 @@ function Animate() {
 
 		});
 
-		cannonWorld.step(TIME_STEP, delta, MAX_SUBSTEP);
+		cannonWorld.step( TIME_STEP, delta, MAX_SUBSTEP );
 
 		// console.log( assetManager.controllerRight.body.position )
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{

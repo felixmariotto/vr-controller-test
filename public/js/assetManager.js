@@ -78,11 +78,11 @@ function AssetManager() {
 
 		cannonWorld.addBody( controller.body );
 
-		scene.add( controller.helper );
+		sphereSpace.add( controller.helper );
 
 	});
 
-	scene.add( controllerRight.mesh, controllerLeft.mesh );
+	sphereSpace.add( controllerRight.mesh, controllerLeft.mesh );
 
 	gltfLoader.load('https://test-threejs-vr.s3.us-east-2.amazonaws.com/racket.glb', (glb)=> {
 		addRacketToController( glb, controllerLeft );
