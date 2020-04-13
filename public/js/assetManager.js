@@ -106,9 +106,9 @@ function AssetManager() {
 			fixedRotation: true
 		});
 
-		var shape = new CANNON.Cylinder( 0.1, 0.1, 0.02, 20 );
+		var shape = new CANNON.Cylinder( 0.1, 0.1, 0.01, 20 );
 		var shapeQuaternion = new CANNON.Quaternion();
-		shapeQuaternion.setFromEuler( 0, 0, Math.PI / 2, "XYZ" );
+		shapeQuaternion.setFromEuler( 0, Math.PI / 2, 0, "XYZ" );
 		controller.body.addShape( shape, null, shapeQuaternion );
 
 		cannonWorld.addBody( controller.body );
