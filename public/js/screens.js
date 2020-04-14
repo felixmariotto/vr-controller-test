@@ -62,7 +62,7 @@ function Screens() {
 
 	// FUNCTIONS
 
-	function printTime( milli ) {
+	function printTime( milli, skipCent ) {
 
 		if ( !font ) return
 
@@ -77,12 +77,14 @@ function Screens() {
 		};
 		sec = Number( sec ) % 60 + "";
 
-		var cent = ( milli / 10 ).toFixed(0);
-		cent = cent.substring( cent.length -2 );
-
 		updateTimeContainer( minContainer, makeTextMesh( min, 1 ) );
 		updateTimeContainer( secContainer, makeTextMesh( sec, 1 ) );
-		updateTimeContainer( centContainer, makeTextMesh( cent, 1 ) );
+
+		if ( !skipCent ) {
+			var cent = ( milli / 10 ).toFixed(0);
+			cent = cent.substring( cent.length -2 );
+			updateTimeContainer( centContainer, makeTextMesh( cent, 1 ) );
+		};
 
 	};
 
