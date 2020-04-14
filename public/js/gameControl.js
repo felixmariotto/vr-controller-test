@@ -28,6 +28,7 @@ function GameControl() {
 				intervalToken = setInterval(()=> {
 					assetManager.addBall();
 				}, 10000);
+				console.log('set interval')
 			};
 
 		}, 0 );
@@ -49,6 +50,7 @@ function GameControl() {
 		if ( intervalToken ) {
 			clearInterval( intervalToken );
 			intervalToken = undefined ;
+			console.log('clear interval')
 		};
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();

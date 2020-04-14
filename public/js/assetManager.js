@@ -97,45 +97,6 @@ function AssetManager() {
 
 	};
 
-	// DESK
-
-	var desk = new THREE.Mesh(
-			new THREE.BoxBufferGeometry( 0.3, 1, 0.3 ),
-			new THREE.MeshLambertMaterial()
-		);
-
-	desk.position.set( 0.9, 0.5, -0.5 );
-
-	scene.add( desk );
-
-		// button
-
-		var button = new THREE.Mesh(
-				new THREE.BoxBufferGeometry( 0.25, 0.2, 0.25 ),
-				new THREE.MeshLambertMaterial({ color: 0x00ff00 })
-			);
-
-		button.position.y += 0.45;
-
-		desk.add( button );
-
-		//
-
-		var buttonBody = new CANNON.Body({
-			mass: 0,
-			shape: new CANNON.Box( new CANNON.Vec3( 0.1225, 0.1, 0.1225 ) ),
-			position: new CANNON.Vec3( 0.9, 0.95, -0.5 )
-		});
-
-		buttonBody.addEventListener("collide",function(e){
-
-			button.material.color = new THREE.Color(0xffffff);
-			gameControl.start();
-
-		});
-
-		cannonWorld.addBody( buttonBody );
-
 	// CONTROLLERS
 
 	controllerRight = {

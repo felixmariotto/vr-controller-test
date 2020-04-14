@@ -74,6 +74,7 @@ function main() {
 	//
 
 	assetManager = AssetManager();
+	animationManager = AnimationManager();
 	animate = Animate();
 	gameControl = GameControl();
 
