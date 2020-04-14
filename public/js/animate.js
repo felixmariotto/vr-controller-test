@@ -9,6 +9,14 @@ function Animate() {
 
 	function update( delta ) {
 
+		// update visual timer
+
+		if ( !gameControl.params.isGamePaused ) {
+			screens.printTime( gameControl.getElapsedGameTime() );
+		};
+
+		// Put cannon controllers at the position of webXR controllers
+
 		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach( (controller)=>{
 
 			controller.body.velocity.set(
@@ -30,21 +38,12 @@ function Animate() {
 				controller.mesh.quaternion.w
 			);
 
+			controller.helper.position.copy( controller.body.position );
+			controller.helper.quaternion.copy( controller.body.quaternion );
+
 		});
 
-		/*
-
-		if ( gameControl.params.isSlowed ) {
-
-			cannonWorld.step( (1/60) * SLOW_DOWN );
-
-		} else {
-
-			cannonWorld.step( TIME_STEP, delta, 20 );
-
-		};
-
-		*/
+		// Physic simulation step
 
 		ticks = Math.round( ( delta / ( 1 / 60 ) ) * 12 );
 
@@ -56,14 +55,7 @@ function Animate() {
 
         };
 
-		//
-
-		[ assetManager.controllerRight, assetManager.controllerLeft ].forEach((controller)=>{
-
-			controller.helper.position.copy( controller.body.position );
-			controller.helper.quaternion.copy( controller.body.quaternion );
-
-		});
+		// Update the rendered position of the balls
 
 		if ( !gameControl.params.isGamePaused ) {
 

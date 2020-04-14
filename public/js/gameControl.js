@@ -2,8 +2,9 @@
 function GameControl() {
 
 	var params = {
-		isGamePaused: false,
-		isSlowed: false
+		isGamePaused: true,
+		isSlowed: false,
+		gameStartTime: undefined
 	};
 
 	var intervalToken;
@@ -21,6 +22,7 @@ function GameControl() {
 			assetManager.emptyBallsMesh();
 			assetManager.setSphereBasicMaterial();
 			params.isGamePaused = false ;
+			params.gameStartTime = Date.now();
 
 			assetManager.addBall();
 
@@ -28,7 +30,6 @@ function GameControl() {
 				intervalToken = setInterval(()=> {
 					assetManager.addBall();
 				}, 10000);
-				console.log('set interval')
 			};
 
 		}, 0 );
@@ -69,12 +70,19 @@ function GameControl() {
 
 	//
 
+	function getElapsedGameTime() {
+		return Date.now() - params.gameStartTime;
+	};
+
+	//
+
 	return {
 		start,
 		endGame,
 		params,
 		setSpeedSlow,
-		setSpeedNormal
+		setSpeedNormal,
+		getElapsedGameTime
 	};
 
 };
