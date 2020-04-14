@@ -192,12 +192,6 @@ function AssetManager() {
 
 	// FUNCTIONS
 
-	/*
-	setInterval(()=> {
-		addBall()
-	}, 800);
-	*/
-
 	function addBall() {
 
 		// abort if game is paused
@@ -246,7 +240,7 @@ function AssetManager() {
 
 			if ( e.body.customType !== "ball" ) {
 
-				addBall();
+				// addBall();
 
 			};
 

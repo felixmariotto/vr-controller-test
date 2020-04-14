@@ -6,6 +6,8 @@ function GameControl() {
 		isSlowed: false
 	};
 
+	var intervalToken;
+
 	//
 
 	function start() {
@@ -21,6 +23,12 @@ function GameControl() {
 			params.isGamePaused = false ;
 
 			assetManager.addBall();
+
+			if ( !intervalToken ) {
+				intervalToken = setInterval(()=> {
+					assetManager.addBall();
+				}, 10000);
+			};
 
 		}, 0 );
 
@@ -38,6 +46,7 @@ function GameControl() {
 
 		};
 
+		if ( intervalToken ) clearInterval( intervalToken );
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();
 		
