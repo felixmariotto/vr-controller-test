@@ -7,11 +7,13 @@ function Animate() {
 	const TIME_STEP = 1 / 600 ;
 	const SLOW_DOWN = 0.5 ; // 0 to 1 range
 
+	var frameID = 0
+
 	function update( delta ) {
 
 		// update visual timer
 
-		if ( !gameControl.params.isGamePaused ) {
+		if ( frameID % 5 == 0 && !gameControl.params.isGamePaused ) {
 			screens.printTime( gameControl.getElapsedGameTime() );
 		};
 
