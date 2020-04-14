@@ -15,8 +15,8 @@ function Animate() {
 
 		frameID ++
 
-		if ( frameID % 10 === 0 && !gameControl.params.isGamePaused ) {
-			screens.printTime( gameControl.getElapsedGameTime(), true );
+		if ( frameID % 5 === 0 && !gameControl.params.isGamePaused ) {
+			screens.printTime( gameControl.getElapsedGameTime() );
 		};
 
 		// Put cannon controllers at the position of webXR controllers

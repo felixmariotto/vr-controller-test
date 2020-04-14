@@ -23,7 +23,6 @@ function GameControl() {
 			assetManager.setSphereBasicMaterial();
 			params.isGamePaused = false ;
 			params.gameStartTime = Date.now();
-			screens.printTime( 0 );
 
 			assetManager.addBall();
 
@@ -42,7 +41,6 @@ function GameControl() {
 	function endGame( failureBall ) {
 
 		screens.printTime( getElapsedGameTime() );
-		screens.purge();
 
 		if ( failureBall ) {
 			if ( audio ) audio.playFailure( failureBall );

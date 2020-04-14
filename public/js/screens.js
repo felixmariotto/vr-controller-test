@@ -2,7 +2,6 @@
 function Screens() {
 
 	var font;
-	var toPurge = [];
 
 	const fontMaterial = new THREE.MeshBasicMaterial({
 		side: THREE.DoubleSide,
@@ -16,12 +15,13 @@ function Screens() {
 	const frontScreen = new THREE.Group();
 	frontScreen.position.set( 0, 2, -2.7 );
 	frontScreen.scale.setScalar( 0.4 );
+	frontScreen.name = 'front-screen'
 	scene.add( frontScreen );
 
 	// FRONT SCREEN BACKGROUND
 
 	const frontBackground = new THREE.Mesh(
-		new THREE.BoxBufferGeometry( 6, 2, 0.1 ),
+		new THREE.BoxBufferGeometry( 6.5, 2, 0.1 ),
 		screnBackMaterial
 	);
 	frontBackground.position.set( 0, 0, -0.15 )
@@ -29,15 +29,35 @@ function Screens() {
 
 	// FRONT SCREEN TEXT CONTAINERS
 
-	const minContainer = new THREE.Group();
-	minContainer.position.x -= 2 ;
+	const minContainer = [
+		new THREE.Group(),
+		new THREE.Group()
+	];
+	minContainer[0].position.x -= 1.6 ;
+	minContainer[1].position.x -= 2.4 ;
 
-	const secContainer = new THREE.Group();
+	const secContainer = [
+		new THREE.Group(),
+		new THREE.Group()
+	];
+	secContainer[0].position.x -= 0.4 ;
+	secContainer[1].position.x += 0.4 ;
 
-	const centContainer = new THREE.Group();
-	centContainer.position.x += 2 ;
+	const centContainer = [
+		new THREE.Group(),
+		new THREE.Group()
+	];
+	centContainer[0].position.x += 1.6 ;
+	centContainer[1].position.x += 2.4 ;
 
-	frontScreen.add( minContainer, secContainer, centContainer );
+	frontScreen.add(
+		minContainer[0],
+		minContainer[1],
+		secContainer[0],
+		secContainer[1],
+		centContainer[0],
+		centContainer[1]
+	);
 
 	// FONT LOADING
 
@@ -63,7 +83,7 @@ function Screens() {
 
 	// FUNCTIONS
 
-	function printTime( milli, skipCent ) {
+	function printTime( milli ) {
 
 		if ( !font ) return
 
@@ -78,14 +98,17 @@ function Screens() {
 		};
 		sec = Number( sec ) % 60 + "";
 
-		updateTimeContainer( minContainer, makeTextMesh( min, 1 ) );
-		updateTimeContainer( secContainer, makeTextMesh( sec, 1 ) );
+		var cent = ( milli / 10 ).toFixed(0);
+		cent = cent.substring( cent.length -2 );
 
-		if ( !skipCent ) {
-			var cent = ( milli / 10 ).toFixed(0);
-			cent = cent.substring( cent.length -2 );
-			updateTimeContainer( centContainer, makeTextMesh( cent, 1 ) );
-		};
+		updateTimeContainer( minContainer[0], makeTextMesh( min, 1 ) );
+		updateTimeContainer( minContainer[1], makeTextMesh( min, 1 ) );
+
+		updateTimeContainer( secContainer[0], makeTextMesh( sec, 1 ) );
+		updateTimeContainer( secContainer[1], makeTextMesh( sec, 1 ) );
+
+		updateTimeContainer( centContainer[0], makeTextMesh( cent, 1 ) );
+		updateTimeContainer( centContainer[1], makeTextMesh( cent, 1 ) );
 
 	};
 
@@ -94,7 +117,6 @@ function Screens() {
 		container.traverse( (child)=> {
 
 			if ( child !== container ) {
-				toPurge.push( child );
 				child.visible = false ;
 			};
 
@@ -116,21 +138,8 @@ function Screens() {
 
 	//
 
-	function purge() {
-		toPurge.forEach( (obj)=> {
-			obj.traverse((child)=>{
-				if ( child.parent ) child.parent.remove( child );
-				if (child.geometry) child.geometry.dispose();
-				if (child.material) child.material.dispose();
-			});
-		});
-	};
-
-	//
-
 	return {
-		printTime,
-		purge
+		printTime
 	};
 
 };
