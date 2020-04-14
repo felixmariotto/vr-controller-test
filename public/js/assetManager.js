@@ -155,62 +155,66 @@ function AssetManager() {
 
 	function addBall() {
 
-		// abort if game is paused
-		if ( gameControl.params.isGamePaused ) return 
+		animationManager.createBallChargingAnim(()=>{
 
-		// avoid accidental double-hits
-		if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
-		lastBallPop = Date.now();
+			// abort if game is paused
+			if ( gameControl.params.isGamePaused ) return 
 
-		var newVelocity = new CANNON.Vec3(
-			Math.random() - 0.5,
-			Math.random() - 0.5,
-			Math.random() - 0.5
-		);
-		newVelocity.normalize();
-		newVelocity.scale( MIN_BALL_VELOCITY + (Math.random() * ( MAX_BALL_VELOCITY - MIN_BALL_VELOCITY )), newVelocity );
+			// avoid accidental double-hits
+			if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
+			lastBallPop = Date.now();
 
-		var ballMesh = new THREE.Mesh(
-			new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
-			new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
-		);
+			var newVelocity = new CANNON.Vec3(
+				Math.random() - 0.5,
+				Math.random() - 0.5,
+				Math.random() - 0.5
+			);
+			newVelocity.normalize();
+			newVelocity.scale( MIN_BALL_VELOCITY + (Math.random() * ( MAX_BALL_VELOCITY - MIN_BALL_VELOCITY )), newVelocity );
 
-		var ball = {
+			var ballMesh = new THREE.Mesh(
+				new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
+				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
+			);
 
-			mesh: ballMesh,
+			var ball = {
 
-			body: new CANNON.Body({
-				mass: 0.05, // kg
-				position: new CANNON.Vec3(
-					GAME_SPHERE_CENTER.x,
-					GAME_SPHERE_CENTER.y,
-					GAME_SPHERE_CENTER.z
-				),
-				shape: new CANNON.Sphere( BALL_RADIUS ),
-				velocity: newVelocity
-			})
+				mesh: ballMesh,
 
-		};
-
-		ball.body.customType = "ball" ;
-		ball.body.rootMesh = ballMesh ;
-
-		ball.body.addEventListener("collide",function(e){
-
-			if ( audio ) audio.playBounce( e.target.rootMesh );
-
-			if ( e.body.customType !== "ball" ) {
-
-				// addBall();
+				body: new CANNON.Body({
+					mass: 0.05, // kg
+					position: new CANNON.Vec3(
+						GAME_SPHERE_CENTER.x,
+						GAME_SPHERE_CENTER.y,
+						GAME_SPHERE_CENTER.z
+					),
+					shape: new CANNON.Sphere( BALL_RADIUS ),
+					velocity: newVelocity
+				})
 
 			};
 
+			ball.body.customType = "ball" ;
+			ball.body.rootMesh = ballMesh ;
+
+			ball.body.addEventListener("collide",function(e){
+
+				if ( audio ) audio.playBounce( e.target.rootMesh );
+
+				if ( e.body.customType !== "ball" ) {
+
+					// addBall();
+
+				};
+
+			});
+
+			scene.add( ball.mesh );
+			cannonWorld.addBody( ball.body );
+
+			balls.push( ball );
+
 		});
-
-		scene.add( ball.mesh );
-		cannonWorld.addBody( ball.body );
-
-		balls.push( ball );
 
 	};
 
@@ -262,6 +266,7 @@ function AssetManager() {
 	//
 
 	return {
+		BALL_RADIUS,
 		GAME_SPHERE_CENTER,
 		GAME_SPHERE_RADIUS,
 		balls,
