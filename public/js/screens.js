@@ -77,7 +77,29 @@ function Screens() {
 
 		//
 
-		printTime( 0 );
+		[minContainer[0],
+		minContainer[1],
+		secContainer[0],
+		secContainer[1],
+		centContainer[0],
+		centContainer[1]].forEach( (container)=> {
+
+			['0','1','2','3','4','5','6','7','8','9'].forEach( (digit)=> {
+
+				var digitMesh = makeTextMesh( digit, 1 );
+				digitMesh.visible = false ;
+				digitMesh.name = digit;
+				container.add( digitMesh );
+
+			});
+
+		});
+
+		//
+
+		setTimeout( ()=> {
+			printTime( 0 );
+		}, 0 );
 
 	});
 
@@ -110,28 +132,30 @@ function Screens() {
 			cent = '0' + cent ;
 		};
 
-		updateTimeContainer( minContainer[0], makeTextMesh( min[0], 1 ) );
-		updateTimeContainer( minContainer[1], makeTextMesh( min[1], 1 ) );
+		updateTimeContainer( minContainer[0], min[0] );
+		updateTimeContainer( minContainer[1], min[1] );
 
-		updateTimeContainer( secContainer[0], makeTextMesh( sec[0], 1 ) );
-		updateTimeContainer( secContainer[1], makeTextMesh( sec[1], 1 ) );
+		updateTimeContainer( secContainer[0], sec[0] );
+		updateTimeContainer( secContainer[1], sec[1] );
 
-		updateTimeContainer( centContainer[0], makeTextMesh( cent[0], 1 ) );
-		updateTimeContainer( centContainer[1], makeTextMesh( cent[1], 1 ) );
+		updateTimeContainer( centContainer[0], cent[0] );
+		updateTimeContainer( centContainer[1], cent[1] );
 
 	};
 
-	function updateTimeContainer( container, newTextMesh ) {
+	function updateTimeContainer( container, text ) {
 
 		container.traverse( (child)=> {
-
 			if ( child !== container ) {
 				child.visible = false ;
 			};
-
 		});
 
-		container.add( newTextMesh );
+		container.traverse( (child)=> {
+			if ( child.name === text ) {
+				child.visible = true ;
+			};
+		});
 
 	};
 
