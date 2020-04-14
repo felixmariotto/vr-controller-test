@@ -91,24 +91,33 @@ function Screens() {
 		if ( min.indexOf('.') > -1 ) {
 			min = min.substring( 0, min.indexOf( '.' ) );
 		};
+		if ( min.length === 1 ) {
+			min = '0' + min ;
+		};
 
 		var sec = '' + ( milli / 1000 );
 		if ( sec.indexOf('.') > -1 ) {
 			sec = sec.substring( 0, sec.indexOf( '.' ) );
 		};
 		sec = Number( sec ) % 60 + "";
+		if ( sec.length === 1 ) {
+			sec = '0' + sec ;
+		};
 
 		var cent = ( milli / 10 ).toFixed(0);
 		cent = cent.substring( cent.length -2 );
+		if ( cent.length === 1 ) {
+			cent = '0' + cent ;
+		};
 
-		updateTimeContainer( minContainer[0], makeTextMesh( min, 1 ) );
-		updateTimeContainer( minContainer[1], makeTextMesh( min, 1 ) );
+		updateTimeContainer( minContainer[0], makeTextMesh( min[0], 1 ) );
+		updateTimeContainer( minContainer[1], makeTextMesh( min[1], 1 ) );
 
-		updateTimeContainer( secContainer[0], makeTextMesh( sec, 1 ) );
-		updateTimeContainer( secContainer[1], makeTextMesh( sec, 1 ) );
+		updateTimeContainer( secContainer[0], makeTextMesh( sec[0], 1 ) );
+		updateTimeContainer( secContainer[1], makeTextMesh( sec[1], 1 ) );
 
-		updateTimeContainer( centContainer[0], makeTextMesh( cent, 1 ) );
-		updateTimeContainer( centContainer[1], makeTextMesh( cent, 1 ) );
+		updateTimeContainer( centContainer[0], makeTextMesh( cent[0], 1 ) );
+		updateTimeContainer( centContainer[1], makeTextMesh( cent[1], 1 ) );
 
 	};
 
