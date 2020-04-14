@@ -6,10 +6,10 @@ function AnimationManager() {
 	ballChargingAnims = [];
 
 	const BALL_CHARGING_CORE_RADIUS = assetManager.BALL_RADIUS ;
-	const BALL_CHARGING_PARTICLE_NUMBER = 5 ;
-	const BALL_CHARGING_PARTICLE_RADIUS = assetManager.BALL_RADIUS / 2 ;
+	const BALL_CHARGING_PARTICLE_NUMBER = 3 ;
+	const BALL_CHARGING_PARTICLE_RADIUS = assetManager.BALL_RADIUS / 3 ;
 	const BALL_CHARGING_START_DISTANCE = 0.01 ;
-	const BALL_CHARGING_END_DISTANCE = 0.04 ;
+	const BALL_CHARGING_END_DISTANCE = 0.035 ;
 	const BALL_CHARGING_ANIM_DURATION = 8000; //ms
 
 	createBallChargingAnim()
@@ -79,7 +79,7 @@ function AnimationManager() {
 
 			globalContainer.children.forEach((child)=> {
 
-				child.rotation.y += 0.03 ;
+				child.rotation.y += 0.07 ;
 
 				if ( child.children.length > 0 ) {
 
@@ -88,12 +88,14 @@ function AnimationManager() {
 						BALL_CHARGING_START_DISTANCE
 					);
 
+					child.children[ 0 ].scale.setScalar( i );
+
 				};
 
 			});
 
-			globalContainer.rotation.x += 0.01 ;
-			globalContainer.rotation.z += 0.01 ;
+			globalContainer.rotation.x += 0.015 ;
+			globalContainer.rotation.z += 0.015 ;
 
 			if ( globalContainer.userData.localTime < 0 ) {
 
