@@ -13,7 +13,9 @@ function Animate() {
 
 		// update visual timer
 
-		if ( frameID % 15 == 0 && !gameControl.params.isGamePaused ) {
+		frameID ++
+
+		if ( frameID % 10 === 0 && !gameControl.params.isGamePaused ) {
 			screens.printTime( gameControl.getElapsedGameTime() );
 		};
 
