@@ -1,7 +1,7 @@
 
 var assetManager ;
 
-var scene, renderer, camera, stats, gltfLoader, clock, gameControl, audio;
+var scene, renderer, camera, stats, gltfLoader, clock, gameControl, audio, screens;
 var cannonWorld, animate;
 
 const WIDTH = window.innerWidth;
@@ -77,6 +77,7 @@ function main() {
 	animationManager = AnimationManager();
 	animate = Animate();
 	gameControl = GameControl();
+	screens = Screens();
 
 	//
 

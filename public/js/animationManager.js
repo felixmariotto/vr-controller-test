@@ -12,8 +12,6 @@ function AnimationManager() {
 	const BALL_CHARGING_END_DISTANCE = 0.035 ;
 	const BALL_CHARGING_ANIM_DURATION = 8000; //ms
 
-	createBallChargingAnim()
-
 	function createBallChargingAnim( color, callbackWhenFinished ) {
 
 		var globalContainer = new THREE.Group();
