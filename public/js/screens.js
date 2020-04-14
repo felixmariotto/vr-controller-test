@@ -2,6 +2,7 @@
 function Screens() {
 
 	var font;
+	var purge = [];
 
 	const fontMaterial = new THREE.MeshBasicMaterial({
 		side: THREE.DoubleSide,
@@ -87,10 +88,19 @@ function Screens() {
 
 	function updateTimeContainer( container, newTextMesh ) {
 
-		container.traverse((child)=>{
+		container.traverse( (child)=> {
+
+			if ( child !== container ) {
+				purge.push( child );
+				child.visible = false ;
+			};
+
+			/*
 			container.remove( child );
 			if (child.geometry) child.geometry.dispose();
 			if (child.material) child.material.dispose();
+			*/
+
 		});
 
 		container.add( newTextMesh );
