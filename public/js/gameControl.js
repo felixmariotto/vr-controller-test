@@ -46,7 +46,10 @@ function GameControl() {
 
 		};
 
-		if ( intervalToken ) clearInterval( intervalToken );
+		if ( intervalToken ) {
+			clearInterval( intervalToken );
+			intervalToken = undefined ;
+		};
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();
 		
