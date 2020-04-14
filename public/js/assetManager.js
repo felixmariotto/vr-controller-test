@@ -155,7 +155,9 @@ function AssetManager() {
 
 	function addBall() {
 
-		animationManager.createBallChargingAnim(()=>{
+		var newBallColor = 0xffffff * Math.random();
+
+		animationManager.createBallChargingAnim( newBallColor, ()=>{
 
 			// abort if game is paused
 			if ( gameControl.params.isGamePaused ) return 
@@ -174,7 +176,7 @@ function AssetManager() {
 
 			var ballMesh = new THREE.Mesh(
 				new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
-				new THREE.MeshLambertMaterial({ color: 0xffffff * Math.random() })
+				new THREE.MeshLambertMaterial({ color: newBallColor })
 			);
 
 			var ball = {

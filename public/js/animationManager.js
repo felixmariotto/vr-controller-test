@@ -8,13 +8,13 @@ function AnimationManager() {
 	const BALL_CHARGING_CORE_RADIUS = assetManager.BALL_RADIUS ;
 	const BALL_CHARGING_PARTICLE_NUMBER = 5 ;
 	const BALL_CHARGING_PARTICLE_RADIUS = assetManager.BALL_RADIUS / 2 ;
-	const BALL_CHARGING_PARTICLE_DISTANCE = 0.05 ;
-	const BALL_CHARGING_PARTICLE_COLOR = 0xff0000 ;
-	const BALL_CHARGING_ANIM_DURATION = 5000; //ms
+	const BALL_CHARGING_START_DISTANCE = 0.01 ;
+	const BALL_CHARGING_END_DISTANCE = 0.04 ;
+	const BALL_CHARGING_ANIM_DURATION = 8000; //ms
 
 	createBallChargingAnim()
 
-	function createBallChargingAnim( callbackWhenFinished ) {
+	function createBallChargingAnim( color, callbackWhenFinished ) {
 
 		var globalContainer = new THREE.Group();
 		globalContainer.position.copy( assetManager.GAME_SPHERE_CENTER );
@@ -23,7 +23,7 @@ function AnimationManager() {
 		globalContainer.userData.coreFinalSize = BALL_CHARGING_CORE_RADIUS;
 		scene.add( globalContainer );
 
-		var particleMaterial = new THREE.MeshLambertMaterial({ color: BALL_CHARGING_PARTICLE_COLOR });
+		var particleMaterial = new THREE.MeshLambertMaterial({ color: color || 0xffffff * Math.random() });
 
 		var core = new THREE.Mesh(
 			new THREE.SphereBufferGeometry( BALL_CHARGING_CORE_RADIUS, 6, 6 ),
@@ -39,7 +39,7 @@ function AnimationManager() {
 					new THREE.SphereBufferGeometry( BALL_CHARGING_PARTICLE_RADIUS, 6, 6 ),
 					particleMaterial
 				);
-			particle.position.x += BALL_CHARGING_PARTICLE_DISTANCE;
+			particle.position.x += BALL_CHARGING_START_DISTANCE;
 
 			let particleContainer = new THREE.Group();
 			particleContainer.rotation.y += ( (2 * Math.PI) / BALL_CHARGING_PARTICLE_NUMBER ) * i ;
@@ -71,19 +71,29 @@ function AnimationManager() {
 
 		ballChargingAnims.forEach( (globalContainer)=> {
 
+			globalContainer.userData.localTime -= delta * 1000 ;
+			let i = ( BALL_CHARGING_ANIM_DURATION - globalContainer.userData.localTime ) /
+					BALL_CHARGING_ANIM_DURATION;
+
+			globalContainer.userData.core.scale.setScalar( i );
+
 			globalContainer.children.forEach((child)=> {
+
 				child.rotation.y += 0.03 ;
+
+				if ( child.children.length > 0 ) {
+
+					child.children[ 0 ].position.x = (
+						(( BALL_CHARGING_END_DISTANCE - BALL_CHARGING_START_DISTANCE ) * i ) +
+						BALL_CHARGING_START_DISTANCE
+					);
+
+				};
+
 			});
 
 			globalContainer.rotation.x += 0.01 ;
 			globalContainer.rotation.z += 0.01 ;
-
-			globalContainer.userData.localTime -= delta * 1000 ;
-
-			globalContainer.userData.core.scale.setScalar(
-				( BALL_CHARGING_ANIM_DURATION - globalContainer.userData.localTime ) /
-				BALL_CHARGING_ANIM_DURATION
-			);
 
 			if ( globalContainer.userData.localTime < 0 ) {
 
