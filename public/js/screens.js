@@ -11,16 +11,16 @@ function Screens() {
 	});
 
 	const frontScreen = new THREE.Group();
-	frontScreen.position.set( 0, 1, -3 );
+	frontScreen.position.set( 0, 2, -3 );
 	scene.add( frontScreen );
 
 	// FRONT SCREEN BACKGROUND
 
 	const frontBackground = new THREE.Mesh(
-		new THREE.BoxBufferGeometry( 2, 2, 0.1 ),
+		new THREE.BoxBufferGeometry( 5, 2, 0.1 ),
 		screnBackMaterial
 	);
-	frontBackground.position.set( 0, 0, 0 )
+	frontBackground.position.set( 0, 0, -0.15 )
 	frontScreen.add( frontBackground );
 
 	//
@@ -37,11 +37,11 @@ function Screens() {
 		geometry.computeBoundingBox();
 
 		var xMid = - 0.5 * ( geometry.boundingBox.max.x - geometry.boundingBox.min.x );
+		var yMid = - 0.5 * ( geometry.boundingBox.max.y - geometry.boundingBox.min.y );
 
-		geometry.translate( xMid, 0, 0 );
+		geometry.translate( xMid, yMid, 0 );
 
 		text = new THREE.Mesh( geometry, fontMaterial );
-		text.position.z = - 1;
 		frontScreen.add( text );
 
 	});
