@@ -23,6 +23,7 @@ function GameControl() {
 			assetManager.setSphereBasicMaterial();
 			params.isGamePaused = false ;
 			params.gameStartTime = Date.now();
+			screens.printTime( 0 );
 
 			assetManager.addBall();
 
@@ -40,18 +41,18 @@ function GameControl() {
 
 	function endGame( failureBall ) {
 
-		if ( failureBall ) {
+		screens.printTime( getElapsedGameTime() );
+		screens.purge();
 
+		if ( failureBall ) {
 			if ( audio ) audio.playFailure( failureBall );
 			assetManager.markFailureBall( failureBall );
 			assetManager.setSphereFailureMaterial();
-
 		};
 
 		if ( intervalToken ) {
 			clearInterval( intervalToken );
 			intervalToken = undefined ;
-			console.log('clear interval')
 		};
 		params.isGamePaused = true ;
 		assetManager.emptyBallsPhysics();

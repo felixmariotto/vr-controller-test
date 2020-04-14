@@ -2,7 +2,7 @@
 function Screens() {
 
 	var font;
-	var purge = [];
+	var toPurge = [];
 
 	const fontMaterial = new THREE.MeshBasicMaterial({
 		side: THREE.DoubleSide,
@@ -15,6 +15,7 @@ function Screens() {
 
 	const frontScreen = new THREE.Group();
 	frontScreen.position.set( 0, 2, -2.7 );
+	frontScreen.scale.setScalar( 0.4 );
 	scene.add( frontScreen );
 
 	// FRONT SCREEN BACKGROUND
@@ -93,15 +94,9 @@ function Screens() {
 		container.traverse( (child)=> {
 
 			if ( child !== container ) {
-				purge.push( child );
+				toPurge.push( child );
 				child.visible = false ;
 			};
-
-			/*
-			container.remove( child );
-			if (child.geometry) child.geometry.dispose();
-			if (child.material) child.material.dispose();
-			*/
 
 		});
 
@@ -119,8 +114,23 @@ function Screens() {
 		return new THREE.Mesh( geometry, fontMaterial );
 	};
 
+	//
+
+	function purge() {
+		toPurge.forEach( (obj)=> {
+			obj.traverse((child)=>{
+				if ( child.parent ) child.parent.remove( child );
+				if (child.geometry) child.geometry.dispose();
+				if (child.material) child.material.dispose();
+			});
+		});
+	};
+
+	//
+
 	return {
-		printTime
+		printTime,
+		purge
 	};
 
 };
