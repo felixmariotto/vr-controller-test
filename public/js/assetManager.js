@@ -26,12 +26,54 @@ function AssetManager() {
 
 	// GRID ROOM
 
+	/*
+
 	room = new THREE.LineSegments(
 			new THREE.BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
 			new THREE.LineBasicMaterial( { color: 0x808080 } )
 		);
 
 	scene.add( room );
+
+	*/
+
+	var positions = [];
+	var colors = [];
+
+	var points = THREE.GeometryUtils.hilbert3D( new THREE.Vector3( 0, 0, 0 ), 20.0, 1, 0, 1, 2, 3, 4, 5, 6, 7 );
+
+	var spline = new THREE.CatmullRomCurve3( points );
+	var divisions = Math.round( 12 * points.length );
+	var point = new THREE.Vector3();
+
+	for ( var i = 0, l = divisions; i < l; i ++ ) {
+
+		var t = i / l;
+
+		spline.getPoint( t, point );
+		positions.push( point.x, point.y, point.z );
+
+	}
+
+	//
+
+	var geometry = new THREE.LineGeometry();
+	geometry.setPositions([
+		-3, 0, -3,
+		3, 0, -3,
+		3, 0, 3,
+		-3, 0, 3
+	]);
+
+	matLine = new THREE.LineMaterial( {
+		color: 0x222222,
+		linewidth: 0.1, // in pixels
+	});
+
+	line = new THREE.Line2( geometry, matLine );
+	line.computeLineDistances();
+	line.scale.set( 1, 1, 1 );
+	scene.add( line );
 
 	// GAME SPHERE
 
