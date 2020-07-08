@@ -73,11 +73,39 @@ function Screens() {
 		}),
 
 		new ThreeMeshUI.Text({
-			fontSize: 0.07,
+			fontSize: 0.09,
 			content: "\nPress any key to start."
 		})
 
 	)
+
+	//////////////
+	// Best score
+	//////////////
+
+	const bestScorePanel = new ThreeMeshUI.Block({
+		height: 0.35,
+		width: 1.8,
+		backgroundColor: new THREE.Color( 0x000000 ),
+		backgroundOpacity: 1,
+		fontFamily: '../assets/Roboto-msdf.json',
+		fontTexture: '../assets/Roboto-msdf.png',
+		justifyContent: 'center',
+		fontSize: 0.135,
+		offset: 0
+	});
+
+	bestScorePanel.position.set( 0, 2.7, -2.7 );
+
+	scene.add( bestScorePanel );
+
+	//
+
+	const bestScore = new ThreeMeshUI.Text({
+		content: "your best : 00 : 00 : 00"
+	});
+
+	bestScorePanel.add( bestScore );
 
 	//////////
 	// Timer
