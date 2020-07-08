@@ -8,13 +8,15 @@ function loop() {
 
 	renderer.render( scene, camera );
 
+	if ( !assetManager ) return
+
 	[
-		gameControl.controllerRight,
-		gameControl.controllerLeft
+		assetManager.controllerRight,
+		assetManager.controllerLeft
 	]
 	.forEach( (controller)=> {
 
-		if ( !controller ) return
+		if ( !controller || !controller.inputSource ) return
 
 		const gamepad = controller.inputSource.gamepad;
 
