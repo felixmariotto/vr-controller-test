@@ -140,11 +140,7 @@ function AssetManager() {
 		});
 
 		controller.mesh.addEventListener('squeezestart', ()=>{
-			gameControl.setSpeedSlow();
-		});
-
-		controller.mesh.addEventListener('squeezeend', ()=>{
-			gameControl.setSpeedNormal();
+			gameControl.start();
 		});
 
 	});

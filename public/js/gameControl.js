@@ -11,6 +11,14 @@ function GameControl() {
 
 	//
 
+	document.addEventListener('keydown', () => {
+
+		start();
+
+	});
+
+	//
+
 	function start() {
 
 		if ( !params.isGamePaused ) {
