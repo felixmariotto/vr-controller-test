@@ -20,22 +20,18 @@ function AssetManager() {
 	var controllerRight, controllerLeft ;
 	var balls = [];
 
-	/////////////
-	////  INIT
-	/////////////
+	// GROUND
 
-	// GRID ROOM
+	const plane = new THREE.Mesh(
+		new THREE.PlaneBufferGeometry( 30, 30 ),
+		new THREE.MeshBasicMaterial({ color: 0x8a281d })
+	);
 
-	/*
+	plane.rotation.x = -Math.PI / 2;
 
-	room = new THREE.LineSegments(
-			new THREE.BoxLineGeometry( 6, 6, 6, 10, 10, 10 ).translate( 0, 3, 0 ),
-			new THREE.LineBasicMaterial( { color: 0x808080 } )
-		);
+	scene.add( plane );
 
-	scene.add( room );
-
-	*/
+	// ROOM
 
 	matLine = new THREE.LineMaterial({
 		color: 0x00abba,
