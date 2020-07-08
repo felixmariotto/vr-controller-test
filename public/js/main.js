@@ -26,7 +26,22 @@ function main() {
 	// SCENE
 
 	scene = new THREE.Scene();
-	scene.background = new THREE.Color( 0x555555 );
+	// scene.background = new THREE.Color( 0x555555 );
+
+	// CUBEMAP
+
+    var path = '../assets/skybox/';
+    var format = '.png';
+    var urls = [
+        path + 'px' + format, path + 'nx' + format,
+        path + 'py' + format, path + 'ny' + format,
+        path + 'pz' + format, path + 'nz' + format
+    ];
+
+    var reflectionCube = new THREE.CubeTextureLoader().load( urls );
+    reflectionCube.format = THREE.RGBFormat;
+
+    scene.background = reflectionCube;
 
 	// CAMERA
 
