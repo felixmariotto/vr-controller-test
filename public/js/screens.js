@@ -69,7 +69,12 @@ function Screens() {
 
 		new ThreeMeshUI.Text({
 			fontSize: 0.07,
-			content: "\nKeep the balls inside the grid"
+			content: "\nKeep the balls inside the grid."
+		}),
+
+		new ThreeMeshUI.Text({
+			fontSize: 0.07,
+			content: "\nPress any key to start."
 		})
 
 	)
