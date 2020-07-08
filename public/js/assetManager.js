@@ -160,12 +160,6 @@ function AssetManager() {
 
 	function addBall() {
 
-		balls.forEach( (ball) => {
-
-			console.log( ball.mesh.position.distanceTo( GAME_SPHERE_CENTER ) )
-
-		});
-
 		var newBallColor = 0xffffff * Math.random();
 
 		animationManager.createBallChargingAnim( newBallColor, ()=>{

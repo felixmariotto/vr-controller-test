@@ -97,14 +97,34 @@ function AnimationManager() {
 
 			if ( globalContainer.userData.localTime < 0 ) {
 
-				setTimeout(()=>{
+				const token = setInterval( popBall, 20 );
 
-					deleteBallChargingAnim( globalContainer );
-					if ( globalContainer.userData.callbackWhenFinished ) {
-						globalContainer.userData.callbackWhenFinished();
+				function popBall() {
+
+					for ( let ball of assetManager.balls ) {
+
+						if (
+							ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) <
+							( assetManager.BALL_RADIUS * 2 )
+						) {
+							return
+						};
+
 					};
 
-				}, 0 );
+					clearInterval( token );
+
+					setTimeout(()=>{
+
+						deleteBallChargingAnim( globalContainer );
+						if ( globalContainer.userData.callbackWhenFinished ) {
+							globalContainer.userData.callbackWhenFinished();
+						};
+
+					}, 0 );
+
+				};
+
 			};
 
 		});
