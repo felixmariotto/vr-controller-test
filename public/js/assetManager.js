@@ -70,11 +70,11 @@ function AssetManager() {
 
 	var roofGeometry = new THREE.LineGeometry();
 	roofGeometry.setPositions([
-		-3, 3.5, -3,
-		3, 3.5, -3,
-		3, 3.5, 3,
-		-3, 3.5, 3,
-		-3, 3.5, -3,
+		-2, 2.5, -2,
+		2, 2.5, -2,
+		2, 2.5, 2,
+		-2, 2.5, 2,
+		-2, 2.5, -2,
 	]);
 
 	roof = new THREE.Line2( roofGeometry, matLine );
@@ -86,11 +86,11 @@ function AssetManager() {
 
 	var window1Geometry = new THREE.LineGeometry();
 	window1Geometry.setPositions([
-		3, 1.5, 0.5,
-		3, 2.3, 0.5,
-		3, 2.3, -0.5,
-		3, 1.5, -0.5,
-		3, 1.5, 0.5
+		2, 1.2, 0.5,
+		2, 2.0, 0.5,
+		2, 2.0, -0.5,
+		2, 1.2, -0.5,
+		2, 1.2, 0.5
 	]);
 
 	window1 = new THREE.Line2( window1Geometry, matLine );

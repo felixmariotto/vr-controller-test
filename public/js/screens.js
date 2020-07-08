@@ -13,7 +13,7 @@ function Screens() {
 		contentDirection: 'row-reverse'
 	});
 
-	menu.position.set( 0, 0.9, -2.7 );
+	menu.position.set( 0, 0.7, -2 );
 
 	scene.add( menu );
 
@@ -95,7 +95,7 @@ function Screens() {
 		offset: 0
 	});
 
-	bestScorePanel.position.set( 0, 2.7, -2.7 );
+	bestScorePanel.position.set( 0, 2.7, -2 );
 
 	scene.add( bestScorePanel );
 
@@ -125,8 +125,8 @@ function Screens() {
 	});
 
 	const frontScreen = new THREE.Group();
-	frontScreen.position.set( 0, 2, -2.7 );
-	frontScreen.scale.setScalar( 0.4 );
+	frontScreen.position.set( 0, 1.5, -2 );
+	frontScreen.scale.setScalar( 0.2 );
 	frontScreen.name = 'front-screen'
 	scene.add( frontScreen );
 
