@@ -49,9 +49,13 @@ function AssetManager() {
 		-3, 0, -3,
 		3, 0, -3,
 		3, 0, 3,
+		2.5, 0, 3,
+		2.5, 2, 3,
+		1.5, 2, 3,
+		1.5, 0, 3,
 		-3, 0, 3,
-		-3, 0, -0.2,
-		-3, 2, -0.2,
+		-3, 0, -0.5,
+		-3, 2, -0.5,
 		-3, 2, -1.5,
 		-3, 0, -1.5,
 		-3, 0, -3,
@@ -61,6 +65,38 @@ function AssetManager() {
 	room.computeLineDistances();
 	room.scale.set( 1, 1, 1 );
 	scene.add( room );
+
+	//
+
+	var roofGeometry = new THREE.LineGeometry();
+	roofGeometry.setPositions([
+		-3, 3.5, -3,
+		3, 3.5, -3,
+		3, 3.5, 3,
+		-3, 3.5, 3,
+		-3, 3.5, -3,
+	]);
+
+	roof = new THREE.Line2( roofGeometry, matLine );
+	roof.computeLineDistances();
+	roof.scale.set( 1, 1, 1 );
+	scene.add( roof );
+
+	//
+
+	var window1Geometry = new THREE.LineGeometry();
+	window1Geometry.setPositions([
+		3, 1.5, 0.5,
+		3, 2.3, 0.5,
+		3, 2.3, -0.5,
+		3, 1.5, -0.5,
+		3, 1.5, 0.5
+	]);
+
+	window1 = new THREE.Line2( window1Geometry, matLine );
+	window1.computeLineDistances();
+	window1.scale.set( 1, 1, 1 );
+	scene.add( window1 );
 
 	// GAME SPHERE
 
