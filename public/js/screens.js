@@ -6,16 +6,27 @@ function Screens() {
 	/////////
 
 	const menu = new ThreeMeshUI.Block({
-		height: 1,
-		width: 1,
+		height: 1.1,
+		width: 2.6,
 		backgroundColor: new THREE.Color( 0x000000 ),
-		backgroundOpacity: 1
+		backgroundOpacity: 1,
+		contentDirection: 'row-reverse'
 	});
 
-	menu.position.set( 0, 1, -1.5 );
-	menu.rotation.y = -0.2;
+	menu.position.set( 0, 0.9, -2.7 );
 
 	scene.add( menu );
+
+	//
+
+	const pictureContainer = new ThreeMeshUI.Block({
+		height: 1.1,
+		width: 1.3,
+		backgroundOpacity: 0,
+		justifyContent: 'center'
+	});
+
+	menu.add( pictureContainer );
 
 	//
 
@@ -27,9 +38,41 @@ function Screens() {
 			backgroundTexture: texture
 		});
 
-		menu.add( instruction );
+		pictureContainer.add( instruction );
 
 	})
+
+	//
+
+	const textContainer = new ThreeMeshUI.Block({
+		height: 1.1,
+		width: 1.3,
+		backgroundOpacity: 0,
+		fontFamily: '../assets/Roboto-msdf.json',
+		fontTexture: '../assets/Roboto-msdf.png',
+		alignContent: 'left',
+		padding: 0.1,
+		interLine: 0.12,
+		justifyContent: 'center'
+	});
+
+	menu.add( textContainer );
+
+	//
+
+	textContainer.add(
+
+		new ThreeMeshUI.Text({
+			content: "Zen Tennis",
+			fontSize: 0.15
+		}),
+
+		new ThreeMeshUI.Text({
+			fontSize: 0.07,
+			content: "\nKeep the balls inside the grid"
+		})
+
+	)
 
 	//////////
 	// Timer
