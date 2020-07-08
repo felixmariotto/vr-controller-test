@@ -8,9 +8,15 @@ function loop() {
 
 	renderer.render( scene, camera );
 
-	const gamepads = navigator.getGamepads();
+	[
+		gameControl.controllerRight,
+		gameControl.controllerLeft
+	]
+	.forEach( (controller)=> {
 
-	for ( let gamepad of gamepads ) {
+		if ( !controller ) return
+
+		const gamepad = controller.inputSource.gamepad;
 
 		if ( gamepad && gamepad.connected ) {
 
@@ -24,6 +30,6 @@ function loop() {
 
 	    };
 
-	};
+	});
 
 };

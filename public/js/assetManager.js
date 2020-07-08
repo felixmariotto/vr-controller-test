@@ -112,7 +112,7 @@ function AssetManager() {
 		controller.mesh.addEventListener( 'connected', function ( event ) {
 
 			// https://www.w3.org/TR/webxr/#xrinputsource-interface
-			console.log( event.data )
+			controller.inputSource = event.data;
 
 		});
 
