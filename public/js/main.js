@@ -31,7 +31,7 @@ function main() {
 	// CAMERA
 
 	camera = new THREE.PerspectiveCamera( 50, window.innerWidth / window.innerHeight, 0.1, 1000000000 );
-	camera.position.set( 0, 1.6, 3 );
+	camera.position.set( 0, 1.6, 2 );
 	scene.add( camera );
 
 	// LIGHTS

@@ -5,16 +5,31 @@ function Screens() {
 	// Menu
 	/////////
 
-	const Menu = new ThreeMeshUI.Block({
+	const menu = new ThreeMeshUI.Block({
 		height: 1,
 		width: 1,
+		backgroundColor: new THREE.Color( 0x000000 ),
+		backgroundOpacity: 1
 	});
 
-	Menu.position.set( 1, 1, -1.5 );
-	Menu.rotation.y = -0.2;
-	Menu.rotation.x = -0.2;
-	
-	scene.add( Menu );
+	menu.position.set( 0, 1, -1.5 );
+	menu.rotation.y = -0.2;
+
+	scene.add( menu );
+
+	//
+
+	new THREE.TextureLoader().load('https://vr-games-host.s3.eu-west-3.amazonaws.com/projects/zen_tennis/game_assets/zen_tennis_instruction.png', (texture) => {
+
+		const instruction = new ThreeMeshUI.Block({
+			height: 0.8,
+			width: 0.8,
+			backgroundTexture: texture
+		});
+
+		menu.add( instruction );
+
+	})
 
 	//////////
 	// Timer
