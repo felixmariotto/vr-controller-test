@@ -162,7 +162,7 @@ function AssetManager() {
 
 		balls.forEach( (ball) => {
 
-			console.log( ball.mesh.position.length() )
+			console.log( ball.mesh.position.distanceTo( GAME_SPHERE_CENTER ) )
 
 		});
 
