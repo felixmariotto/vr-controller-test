@@ -21,7 +21,7 @@ function Screens() {
 
 	const pictureContainer = new ThreeMeshUI.Block({
 		height: 1.1,
-		width: 1.3,
+		width: 1.1,
 		backgroundOpacity: 0,
 		justifyContent: 'center'
 	});
@@ -46,7 +46,7 @@ function Screens() {
 
 	const textContainer = new ThreeMeshUI.Block({
 		height: 1.1,
-		width: 1.3,
+		width: 1.5,
 		backgroundOpacity: 0,
 		fontFamily: '../assets/jack-input.json',
 		fontTexture: '../assets/jack-input.png',
@@ -84,8 +84,8 @@ function Screens() {
 	//////////////
 
 	const bestScorePanel = new ThreeMeshUI.Block({
-		height: 0.35,
-		width: 1.8,
+		height: 0.3,
+		width: 2,
 		backgroundColor: new THREE.Color( 0x000000 ),
 		backgroundOpacity: 1,
 		fontFamily: '../assets/jack-input.json',
