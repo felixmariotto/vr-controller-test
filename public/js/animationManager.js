@@ -14,6 +14,8 @@ function AnimationManager() {
 
 	function createBallChargingAnim( color, callbackWhenFinished ) {
 
+		if ( ballChargingAnim ) deleteBallChargingAnim();
+
 		var globalContainer = new THREE.Group();
 		globalContainer.position.copy( assetManager.GAME_SPHERE_CENTER );
 		globalContainer.userData.localTime = BALL_CHARGING_ANIM_DURATION;
@@ -51,14 +53,14 @@ function AnimationManager() {
 
 	};
 
-	function deleteBallChargingAnim( globalContainer ) {
+	function deleteBallChargingAnim() {
 
-		globalContainer.traverse((child)=>{
+		ballChargingAnim.traverse((child)=>{
 			if ( child.material ) child.material.dispose();
 			if ( child.mesh ) child.mesh.dispose();
 		});
 
-		scene.remove( globalContainer );
+		scene.remove( ballChargingAnim );
 
 		ballChargingAnim = undefined;
 
@@ -97,7 +99,7 @@ function AnimationManager() {
 					ballChargingAnim.userData.callbackWhenFinished();
 				};
 
-				deleteBallChargingAnim( ballChargingAnim );
+				deleteBallChargingAnim();
 
 				popBall = false
 
