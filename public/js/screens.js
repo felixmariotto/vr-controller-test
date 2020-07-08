@@ -1,6 +1,25 @@
 
 function Screens() {
 
+	/////////
+	// Menu
+	/////////
+
+	const Menu = new ThreeMeshUI.Block({
+		height: 1,
+		width: 1,
+	});
+
+	Menu.position.set( 1, 1, -1.5 );
+	Menu.rotation.y = -0.2;
+	Menu.rotation.x = -0.2;
+	
+	scene.add( Menu );
+
+	//////////
+	// Timer
+	//////////
+
 	var font;
 
 	const fontMaterial = new THREE.MeshBasicMaterial({

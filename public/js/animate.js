@@ -11,6 +11,8 @@ function Animate() {
 
 	function update( delta ) {
 
+		ThreeMeshUI.update();
+
 		// update visual timer
 
 		frameID ++
