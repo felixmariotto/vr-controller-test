@@ -6,7 +6,7 @@ function Screens() {
 	/////////
 
 	const menu = new ThreeMeshUI.Block({
-		height: 1.1,
+		height: 1.05,
 		width: 2.6,
 		backgroundColor: new THREE.Color( 0x000000 ),
 		backgroundOpacity: 1,
@@ -147,8 +147,8 @@ function Screens() {
 		new THREE.Group(),
 		new THREE.Group()
 	];
-	minContainer[0].position.x -= 1.6 ;
-	minContainer[1].position.x -= 2.4 ;
+	minContainer[0].position.x -= 2.4 ;
+	minContainer[1].position.x -= 1.6 ;
 
 	const secContainer = [
 		new THREE.Group(),
