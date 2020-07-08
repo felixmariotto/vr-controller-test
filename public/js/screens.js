@@ -13,7 +13,7 @@ function Screens() {
 		contentDirection: 'row-reverse'
 	});
 
-	menu.position.set( 0, 0.7, -2 );
+	menu.position.set( 0, 1.5, -2 );
 
 	scene.add( menu );
 
@@ -84,18 +84,19 @@ function Screens() {
 	//////////////
 
 	const bestScorePanel = new ThreeMeshUI.Block({
-		height: 0.3,
-		width: 2,
+		height: 0.15,
+		width: 1.3,
 		backgroundColor: new THREE.Color( 0x000000 ),
 		backgroundOpacity: 1,
 		fontFamily: '../assets/jack-input.json',
 		fontTexture: '../assets/jack-input.png',
 		justifyContent: 'center',
-		fontSize: 0.135,
+		fontSize: 0.086,
 		offset: 0
 	});
 
-	bestScorePanel.position.set( 0, 2.7, -2 );
+	bestScorePanel.position.set( -2, 1.5, 1 );
+	bestScorePanel.rotation.y = Math.PI / 2;
 
 	scene.add( bestScorePanel );
 
@@ -125,7 +126,8 @@ function Screens() {
 	});
 
 	const frontScreen = new THREE.Group();
-	frontScreen.position.set( 0, 1.5, -2 );
+	frontScreen.position.set( -1.97, 1.8, 1 );
+	frontScreen.rotation.y = Math.PI / 2;
 	frontScreen.scale.setScalar( 0.2 );
 	frontScreen.name = 'front-screen'
 	scene.add( frontScreen );
