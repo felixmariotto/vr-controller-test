@@ -65,9 +65,9 @@ function AssetManager() {
 		-3, 0, 3
 	]);
 
-	matLine = new THREE.LineMaterial( {
+	matLine = new THREE.LineMaterial({
 		color: 0x222222,
-		linewidth: 0.1, // in pixels
+		linewidth: 0.01, // in pixels
 	});
 
 	line = new THREE.Line2( geometry, matLine );
