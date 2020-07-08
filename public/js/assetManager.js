@@ -109,6 +109,15 @@ function AssetManager() {
 
 	[ controllerRight, controllerLeft ].forEach( (controller)=> {
 
+		controller.mesh.addEventListener( 'connected', function ( event ) {
+
+			// https://www.w3.org/TR/webxr/#xrinputsource-interface
+			console.log( event.data )
+
+		});
+
+		//
+
 		controller.body = new CANNON.Body({
 			mass: 0.1,
 			position: new CANNON.Vec3(

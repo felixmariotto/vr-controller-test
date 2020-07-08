@@ -8,8 +8,6 @@ function loop() {
 
 	renderer.render( scene, camera );
 
-	if ( assetManager ) console.log( assetManager.controllerRight );
-
 	const gamepads = navigator.getGamepads();
 
 	for ( let gamepad of gamepads ) {
