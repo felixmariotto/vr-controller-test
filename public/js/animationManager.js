@@ -3,14 +3,14 @@ function AnimationManager() {
 
 	// BALL CHARGING ANIMATION
 
-	ballChargingAnims = [];
+	let ballChargingAnim;
 
 	const BALL_CHARGING_CORE_RADIUS = assetManager.BALL_RADIUS ;
 	const BALL_CHARGING_PARTICLE_NUMBER = 3 ;
 	const BALL_CHARGING_PARTICLE_RADIUS = assetManager.BALL_RADIUS / 3 ;
 	const BALL_CHARGING_START_DISTANCE = 0.01 ;
 	const BALL_CHARGING_END_DISTANCE = 0.035 ;
-	const BALL_CHARGING_ANIM_DURATION = 8000; //ms
+	const BALL_CHARGING_ANIM_DURATION = 4000; //ms
 
 	function createBallChargingAnim( color, callbackWhenFinished ) {
 
@@ -44,7 +44,8 @@ function AnimationManager() {
 
 			particleContainer.add( particle );
 			globalContainer.add( particleContainer );
-			ballChargingAnims.push( globalContainer );
+
+			ballChargingAnim = globalContainer;
 			
 		};
 
@@ -59,75 +60,87 @@ function AnimationManager() {
 
 		scene.remove( globalContainer );
 
-		ballChargingAnims.splice( ballChargingAnims.indexOf( globalContainer ), 1 );
+		ballChargingAnim = undefined;
 
 	};
 
 	// FUNCTIONS
 
+	let popBall;
+
 	function update( delta ) {
 
-		ballChargingAnims.forEach( (globalContainer)=> {
+		// construct new ball if nothing is blocking
 
-			globalContainer.userData.localTime -= delta * 1000 ;
-			let i = ( BALL_CHARGING_ANIM_DURATION - globalContainer.userData.localTime ) /
-					BALL_CHARGING_ANIM_DURATION;
+		if ( popBall ) {
 
-			globalContainer.userData.core.scale.setScalar( i );
+			const isBlocking = assetManager.balls.reduce( (isBlocking, ball) => {
 
-			globalContainer.children.forEach((child)=> {
+				if (
+					ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) <
+					( assetManager.BALL_RADIUS * 2 )
+				) {
+					
+					return true
+					
+				} else {
 
-				child.rotation.y += 0.07 ;
-
-				if ( child.children.length > 0 ) {
-
-					child.children[ 0 ].position.x = (
-						(( BALL_CHARGING_END_DISTANCE - BALL_CHARGING_START_DISTANCE ) * i ) +
-						BALL_CHARGING_START_DISTANCE
-					);
-
-					child.children[ 0 ].scale.setScalar( i );
+					return isBlocking
 
 				};
 
-			});
+			}, false );
 
-			globalContainer.rotation.x += 0.015 ;
-			globalContainer.rotation.z += 0.015 ;
+			if ( !isBlocking ) {
 
-			if ( globalContainer.userData.localTime < 0 ) {
-
-				const token = setInterval( popBall, 20 );
-
-				function popBall() {
-
-					for ( let ball of assetManager.balls ) {
-
-						if (
-							ball.mesh.position.distanceTo( assetManager.GAME_SPHERE_CENTER ) <
-							( assetManager.BALL_RADIUS * 2 )
-						) {
-							return
-						};
-
-					};
-
-					clearInterval( token );
-
-					setTimeout(()=>{
-
-						deleteBallChargingAnim( globalContainer );
-						if ( globalContainer.userData.callbackWhenFinished ) {
-							globalContainer.userData.callbackWhenFinished();
-						};
-
-					}, 0 );
-
+				if ( ballChargingAnim.userData.callbackWhenFinished ) {
+					ballChargingAnim.userData.callbackWhenFinished();
 				};
+
+				deleteBallChargingAnim( ballChargingAnim );
+
+				popBall = false
+
+			};
+
+		};
+
+		// update ball charging anim
+
+		if ( !ballChargingAnim ) return
+
+		ballChargingAnim.userData.localTime -= delta * 1000 ;
+
+		let i = ( BALL_CHARGING_ANIM_DURATION - ballChargingAnim.userData.localTime ) /
+				BALL_CHARGING_ANIM_DURATION;
+
+		if ( !popBall ) ballChargingAnim.userData.core.scale.setScalar( i );
+
+		ballChargingAnim.children.forEach((child)=> {
+
+			child.rotation.y += 0.2 ;
+
+			if ( child.children.length > 0 ) {
+
+				if ( !popBall ) child.children[ 0 ].position.x = (
+					(( BALL_CHARGING_END_DISTANCE - BALL_CHARGING_START_DISTANCE ) * i ) +
+					BALL_CHARGING_START_DISTANCE
+				);
+
+				if ( !popBall ) child.children[ 0 ].scale.setScalar( i );
 
 			};
 
 		});
+
+		ballChargingAnim.rotation.x += 0.05 ;
+		ballChargingAnim.rotation.z += 0.05 ;
+
+		if ( ballChargingAnim.userData.localTime < 0 ) {
+
+			popBall = true;
+
+		};
 
 	};
 
