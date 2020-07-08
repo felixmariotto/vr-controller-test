@@ -160,6 +160,12 @@ function AssetManager() {
 
 	function addBall() {
 
+		balls.forEach( (ball) => {
+
+			console.log( ball.mesh.position.length() )
+
+		});
+
 		var newBallColor = 0xffffff * Math.random();
 
 		animationManager.createBallChargingAnim( newBallColor, ()=>{
@@ -169,7 +175,10 @@ function AssetManager() {
 
 			// avoid accidental double-hits
 			if ( lastBallPop + BALL_POP_MIN_SPAN > Date.now() ) return
+
 			lastBallPop = Date.now();
+
+			//
 
 			var newVelocity = new CANNON.Vec3(
 				Math.random() - 0.5,
