@@ -21,9 +21,11 @@ function GameControl() {
 
 	function start() {
 
+		if ( getElapsedGameTime() < 1000 ) return
+
 		if ( !params.isGamePaused ) {
 			endGame();
-		}; 
+		};
 
 		setTimeout(()=> {
 
@@ -48,7 +50,10 @@ function GameControl() {
 
 	function endGame( failureBall ) {
 
-		screens.printTime( getElapsedGameTime() );
+		const time = getElapsedGameTime();
+
+		screens.printTime( time );
+		screens.printBestScore( time );
 
 		if ( failureBall ) {
 			if ( audio ) audio.playFailure( failureBall );

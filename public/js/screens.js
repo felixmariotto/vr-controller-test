@@ -101,11 +101,13 @@ function Screens() {
 
 	//
 
-	const bestScore = new ThreeMeshUI.Text({
+	let bestScore = 0;
+
+	const bestScoreText = new ThreeMeshUI.Text({
 		content: "your best : 00 : 00 : 00"
 	});
 
-	bestScorePanel.add( bestScore );
+	bestScorePanel.add( bestScoreText );
 
 	//////////
 	// Timer
@@ -253,6 +255,47 @@ function Screens() {
 
 	};
 
+	//
+
+	function printBestScore( milli ) {
+
+		if ( milli > bestScore ) {
+
+			var min = '' + ( milli / 60000 );
+			if ( min.indexOf('.') > -1 ) {
+				min = min.substring( 0, min.indexOf( '.' ) );
+			};
+			if ( min.length === 1 ) {
+				min = '0' + min ;
+			};
+
+			var sec = '' + ( milli / 1000 );
+			if ( sec.indexOf('.') > -1 ) {
+				sec = sec.substring( 0, sec.indexOf( '.' ) );
+			};
+			sec = Number( sec ) % 60 + "";
+			if ( sec.length === 1 ) {
+				sec = '0' + sec ;
+			};
+
+			var cent = ( milli / 10 ).toFixed(0);
+			cent = cent.substring( cent.length -2 );
+			if ( cent.length === 1 ) {
+				cent = '0' + cent ;
+			};
+
+			bestScoreText.set({
+				content: 'your best : ' + ( min + ' : ' + sec + ' : ' + cent )
+			});
+
+			bestScore = milli;
+
+		};
+
+	};
+
+	//
+
 	function updateTimeContainer( container, text ) {
 
 		container.traverse( (child)=> {
@@ -282,7 +325,8 @@ function Screens() {
 	//
 
 	return {
-		printTime
+		printTime,
+		printBestScore
 	};
 
 };
