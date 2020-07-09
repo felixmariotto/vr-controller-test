@@ -39,7 +39,7 @@ function AssetManager() {
 
 		const model = glb.scene;
 
-		model.position.y -= 0.1;
+		model.position.y -= 0.69;
 		model.rotation.y = Math.PI;
 
 		scene.add( model );
