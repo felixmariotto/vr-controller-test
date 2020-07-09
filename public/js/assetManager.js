@@ -39,8 +39,10 @@ function AssetManager() {
 
 		const model = glb.scene;
 
-		model.position.y -= 0.69;
+		model.position.y -= 0.75;
 		model.rotation.y = Math.PI;
+		model.rotation.x += 0.05;
+		model.rotation.y += 0.6;
 
 		scene.add( model );
 
