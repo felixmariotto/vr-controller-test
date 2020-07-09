@@ -22,19 +22,6 @@ function AssetManager() {
 
 	// GROUND
 
-	/*
-
-	const plane = new THREE.Mesh(
-		new THREE.PlaneBufferGeometry( 30, 30 ),
-		new THREE.MeshBasicMaterial({ color: 0x8a281d })
-	);
-
-	plane.rotation.x = -Math.PI / 2;
-
-	scene.add( plane );
-
-	*/
-
 	var loader = new THREE.GLTFLoader().load('https://vr-games-host.s3.eu-west-3.amazonaws.com/projects/zen_tennis/game_assets/dune.glb', (glb) => {
 
 		const model = glb.scene;
@@ -238,7 +225,13 @@ function AssetManager() {
 
 	function addBall() {
 
-		var newBallColor = 0xffffff * Math.random();
+		const threeColor = new THREE.Color(
+			0,
+			0.5 + (Math.random() * 0.5),
+			0.5 + (Math.random() * 0.5)
+		);
+
+		var newBallColor = threeColor.getHex();
 
 		animationManager.createBallChargingAnim( newBallColor, ()=>{
 
