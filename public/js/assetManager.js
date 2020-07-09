@@ -22,6 +22,8 @@ function AssetManager() {
 
 	// GROUND
 
+	/*
+
 	const plane = new THREE.Mesh(
 		new THREE.PlaneBufferGeometry( 30, 30 ),
 		new THREE.MeshBasicMaterial({ color: 0x8a281d })
@@ -30,6 +32,14 @@ function AssetManager() {
 	plane.rotation.x = -Math.PI / 2;
 
 	scene.add( plane );
+
+	*/
+
+	var loader = new THREE.GLTFLoader().load('https://vr-games-host.s3.eu-west-3.amazonaws.com/projects/zen_tennis/game_assets/dune.glb', (glb) => {
+
+		scene.add( glb.scene );
+
+	});
 
 	// ROOM
 
