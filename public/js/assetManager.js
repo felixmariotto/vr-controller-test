@@ -2,8 +2,8 @@
 function AssetManager() {
 
 	// min and max init speed for new balls
-	const MIN_BALL_VELOCITY = 0.1 ;
-	const MAX_BALL_VELOCITY = 0.2 ;
+	const MIN_BALL_VELOCITY = 0.075 ;
+	const MAX_BALL_VELOCITY = 0.12 ;
 
 	const BALL_RADIUS = 0.025;
 
