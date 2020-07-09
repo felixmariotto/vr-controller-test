@@ -7,7 +7,7 @@ function AssetManager() {
 
 	const BALL_RADIUS = 0.025;
 
-	const FAILURE_BALL_MATERIAL = new THREE.MeshLambertMaterial({ color: 0xff0000 });
+	const FAILURE_BALL_MATERIAL = new THREE.MeshBasicMaterial({ color: 0xff0000 });
 
 	// game zone
 	const GAME_SPHERE_RADIUS = 0.3;
@@ -255,7 +255,7 @@ function AssetManager() {
 
 			var ballMesh = new THREE.Mesh(
 				new THREE.SphereBufferGeometry( BALL_RADIUS, 16, 16 ),
-				new THREE.MeshLambertMaterial({ color: newBallColor })
+				new THREE.MeshBasicMaterial({ color: newBallColor })
 			);
 
 			var ball = {

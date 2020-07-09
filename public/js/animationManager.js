@@ -23,7 +23,7 @@ function AnimationManager() {
 		globalContainer.userData.coreFinalSize = BALL_CHARGING_CORE_RADIUS;
 		scene.add( globalContainer );
 
-		var particleMaterial = new THREE.MeshLambertMaterial({ color: color });
+		var particleMaterial = new THREE.MeshBasicMaterial({ color: color });
 
 		var core = new THREE.Mesh(
 			new THREE.SphereBufferGeometry( BALL_CHARGING_CORE_RADIUS, 6, 6 ),

@@ -17,7 +17,7 @@ function Animate() {
 
 		frameID ++
 
-		if ( frameID % 5 === 0 && !gameControl.params.isGamePaused ) {
+		if ( frameID % 10 === 0 && !gameControl.params.isGamePaused ) {
 			screens.printTime( gameControl.getElapsedGameTime() );
 		};
 
