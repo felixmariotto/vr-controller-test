@@ -37,7 +37,11 @@ function AssetManager() {
 
 	var loader = new THREE.GLTFLoader().load('https://vr-games-host.s3.eu-west-3.amazonaws.com/projects/zen_tennis/game_assets/dune.glb', (glb) => {
 
-		scene.add( glb.scene );
+		const model = glb.scene;
+
+		model.position.y -= 0.1;
+
+		scene.add( model );
 
 	});
 

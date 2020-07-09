@@ -52,11 +52,13 @@ function main() {
 
 	// LIGHTS
 
+	/*
 	var light = new THREE.DirectionalLight( 0xffffff );
 	light.position.set( 0, 0, 1 );
 	scene.add( light );
 	light.target.position.set( 0, 0, - 2 );
 	scene.add( light.target );
+	*/
 
 	var hemLight = new THREE.AmbientLight( 0xffffff, 0.8 ); // soft white light
 	scene.add( hemLight );
@@ -68,6 +70,7 @@ function main() {
 	renderer.setPixelRatio( window.devicePixelRatio );
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	renderer.outputEncoding = THREE.GammaEncoding;
+	renderer.gammaOutput = true;
 	renderer.gammaFactor = 2.2;
 	renderer.xr.enabled = true;
 	document.body.appendChild( renderer.domElement );

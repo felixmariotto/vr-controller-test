@@ -8,6 +8,8 @@ function loop() {
 
 	renderer.render( scene, camera );
 
+	// console.log( renderer.info.render )
+
 	if ( !assetManager ) return
 
 	[
