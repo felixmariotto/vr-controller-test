@@ -10,6 +10,8 @@ function loop() {
 
 	// console.log( renderer.info.render )
 
+	if ( cameraContainer ) cameraContainer.rotation.y += 0.003;
+
 	if ( !assetManager ) return
 
 	[
