@@ -3,7 +3,6 @@ var assetManager ;
 
 var scene, renderer, camera, stats, gltfLoader, clock, gameControl, audio, screens;
 var cannonWorld, animate;
-var cameraContainer;
 
 const WIDTH = window.innerWidth;
 const HEIGHT = window.innerHeight;
@@ -46,13 +45,10 @@ function main() {
 
 	// CAMERA
 
-	cameraContainer = new THREE.Group();
-	scene.add( cameraContainer );
-
 	camera = new THREE.PerspectiveCamera( 80, window.innerWidth / window.innerHeight, 0.1, 1000000000 );
 	camera.position.set( 3.1, 1.5, 3.1 );
 	camera.lookAt( 0, 1, 0 );
-	cameraContainer.add( camera );
+	scene.add( camera );
 
 	// LIGHTS
 
