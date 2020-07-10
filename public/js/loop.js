@@ -10,7 +10,9 @@ function loop() {
 
 	// console.log( renderer.info.render )
 
-	camera.rotation.y += 0.003;
+	camera.position.x = Math.sin( Date.now() / 5000 ) * 4.5
+	camera.position.z = Math.cos( Date.now() / 5000 ) * 4.5
+	camera.lookAt( 0, 1, 0 );
 
 	if ( !assetManager ) return
 
